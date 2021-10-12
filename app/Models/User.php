@@ -25,7 +25,16 @@ class User extends Authenticatable
         'role'
     ];
 
+    protected static $validRoles = [
+        'admin' => 'Admin',
+        'teacher' => 'Teacher'
+    ];
+
     public static $ADMIN = 'admin';
     public static $TEACHER = 'teacher';
 
+    public static function isValidRole($value)
+    {
+        return array_key_exists($value, self::$validRoles);
+    }
 }

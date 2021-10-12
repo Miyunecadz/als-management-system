@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -30,6 +33,30 @@ class UserController extends Controller
             'success' => false,
             'message' => "Invalid username or password!"
         ]);
+    }
+
+    public function create()
+    {
+        return view('pages.users.create');
+    }
+
+    public function store(StoreUserRequest $request)
+    {
+        User::create([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'role' => $request->role
+        ]);
+
+        return redirect(route('users.index'))->with(['success' => true, 'message' => 'New User account has been successfully added']);
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect(route('users.index'))->with(['success' => true, 'message' => 'User account has been successfully deleted']);
     }
 }
 
