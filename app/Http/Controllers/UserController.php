@@ -13,6 +13,7 @@ class UserController extends Controller
 {
     public function login(Request $request)
     {
+
         $validator = Validator::make($request->all(),[
             'username' => 'required',
             'password' => 'required'
@@ -23,16 +24,16 @@ class UserController extends Controller
             return redirect(route('login-page'))->withErrors($validator->errors())->withInput();
         }
 
-        if(Auth::attempt($request->all()))
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password]))
         {
             $request->session()->regenerate();
             return redirect()->intended(route('dashboard'));
         }
 
+
         return redirect(route('login-page'))->withErrors([
-            'success' => false,
             'message' => "Invalid username or password!"
-        ]);
+        ])->withInput();
     }
 
     public function create()
