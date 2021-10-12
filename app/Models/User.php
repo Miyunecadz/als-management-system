@@ -25,4 +25,7 @@ class User extends Authenticatable
         'role'
     ];
 
+    public static $ADMIN = 'admin';
+    public static $TEACHER = 'teacher';
+
 }
