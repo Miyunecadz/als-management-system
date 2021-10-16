@@ -21,6 +21,7 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/', function(){ return view('pages.dashboard'); })->name('dashboard');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::resource('users', UserController::class);
 
 });
