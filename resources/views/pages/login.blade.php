@@ -12,17 +12,24 @@
                         <div class="col-md-6 col-sm-12 ">
                             <div class="flex-row d-flex  justify-content-center align-items-center h-100">
                                 <div class="col-12">
-                                    <h4 class="d-flex justify-content-center font-montserrat-bold mb-4">Welcome back</h4>
-                                    <form  action="" class="p-4">
+                                    <h4 class="d-flex justify-content-center font-montserrat-bold mb-4">Welcome back!</h4>
+                                    @if($errors->any())
+                                        {!!  implode('', $errors->all('<div class=\'text-danger\'>:message</div>'))  !!}
+                                    @endif
+                                    <form  action="{{ url('/login') }}" method="POST" class="p-4">
+                                        @csrf
                                         <div class="input-icons">
                                             <i class="bi bi-person-fill icon"></i>
-                                            <input type="text" name="username" class="input-field font-poppins-regular border-0 rounded-pill" placeholder="Username">
+                                            <input type="text" name="username" class="input-field font-poppins-regular border-0 rounded-pill" required placeholder="Username">
                                         </div>
                                         <div class="input-icons">
                                             <i class="bi bi-person-fill icon"></i>
-                                            <input type="password" name="password" class="input-field font-poppins-regular border-0 rounded-pill" placeholder="Password">
+                                            <input type="password" name="password" class="input-field font-poppins-regular border-0 rounded-pill" required placeholder="Password">
                                         </div>
-
+                                        <div class="py-2">
+                                            <input type="checkbox" id="remember_me" name="remember_me" value="1">
+                                            <label class="font-poppins-regular" for="remember_me">Remember Me</label>
+                                        </div>
                                         <div class="d-grid">
                                             <button type="submit" class="btn btn-success font-poppins-regular  rounded-pill">
                                                 Login
