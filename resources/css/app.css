@@ -1,0 +1,77 @@
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../fonts/poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../fonts/poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url('../fonts/montserrat/Montserrat-Bold.ttf');
+}
+
+.font-poppins-regular {
+    font-family: Poppins-Regular, sans-serif;
+}
+
+.font-poppins-medium {
+    font-family: Poppins-Medium, sans-serif;
+}
+
+.font-poppins-bold {
+    font-family: Poppins-Bold, sans-serif;
+}
+
+.font-montserrat-bold {
+    font-family: Montserrat-Bold, sans-serif;
+}
+
+.container-login {
+    background: #9053c7;
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+
+/*Font-Style*/
+
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.icon {
+    padding: 10px;
+    color: green;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    padding-left: 50px;
+    background-color: #ededed;
+}
+
+.bg-image {
+    background-image: url("https://image.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
