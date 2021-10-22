@@ -2,6 +2,16 @@
 [ FONT ]*/
 
 @font-face {
+    font-family: Poppins-Thin;
+    src: url('../fonts/poppins/Poppins-Thin.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../fonts/poppins/Poppins-Light.ttf');
+}
+
+@font-face {
     font-family: Poppins-Regular;
     src: url('../fonts/poppins/Poppins-Regular.ttf');
 }
@@ -19,6 +29,14 @@
 @font-face {
     font-family: Montserrat-Bold;
     src: url('../fonts/montserrat/Montserrat-Bold.ttf');
+}
+
+.font-poppins-thin {
+    font-family: Poppins-Thin, sans-serif;
+}
+
+.font-poppins-light {
+    font-family: Poppins-Light, sans-serif;
 }
 
 .font-poppins-regular {
@@ -47,6 +65,11 @@
 
 /*Font-Style*/
 
+* {
+    transition: all 0.5s ease;
+}
+
+
 .input-icons i {
     position: absolute;
 }
@@ -65,8 +88,7 @@
 
 .input-field {
     width: 100%;
-    padding: 10px;
-    padding-left: 50px;
+    padding: 10px 10px 10px 50px;
     background-color: #ededed;
 }
 
@@ -74,4 +96,46 @@
     background-image: url("https://image.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.bg-green-light-flat {
+    background-color: #1dd1a1;
+}
+
+.bg-green-dark-flat {
+    background-color: #10ac84;
+}
+
+.bg-black-dark-flat {
+    background-color: #222f3e;
+}
+
+.text-black-dark-flat {
+    color: #222f3e;
+}
+
+.search-input {
+    font-size: 14px;
+    background-color: #10ac84;
+    color: #c8d6e5;
+    outline: none;
+}
+
+.selected-nav {
+    background-color: #576574;
+}
+.nav-height {
+    height: 50px;
+}
+
+.sidebar-width {
+    width: 250px;
+}
+
+.sidebar-height {
+    height: calc(100vh - 50px);
+}
+
+.sidebar-hidden {
+    display: none;
 }
