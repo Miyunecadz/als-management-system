@@ -47,6 +47,11 @@ class UserController extends Controller
         return redirect(route('login'));
     }
 
+    public function index()
+    {
+        return view('pages.users.index', ['users' => User::where('role', USER::$TEACHER)]);
+    }
+
     public function create()
     {
         return view('pages.users.create');
