@@ -139,3 +139,11 @@
 .sidebar-hidden {
     display: none;
 }
+
+
+@media (min-width: 576px) {
+    .sidebar-hidden {
+        display: inline;
+    }
+}
+
