@@ -23,7 +23,7 @@
                                             <input type="text" name="username" class="input-field font-poppins-regular border-0 rounded-pill" required placeholder="Username">
                                         </div>
                                         <div class="input-icons">
-                                            <i class="bi bi-person-fill icon"></i>
+                                            <i class="bi bi-key-fill icon"></i>
                                             <input type="password" name="password" class="input-field font-poppins-regular border-0 rounded-pill" required placeholder="Password">
                                         </div>
                                         <div class="py-2">
