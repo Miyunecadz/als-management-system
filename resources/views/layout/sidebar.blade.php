@@ -1,4 +1,4 @@
-<div class="wrapper-sidebar">
+<div class="wrapper-sidebar d-md-inline">
     <div class="logo  d-flex justify-content-center pt-2 bg-green-dark-flat nav-height">
         <h4 class="font-montserrat-bold text-white ">ALS DATABASE</h4>
     </div>
@@ -30,15 +30,6 @@
                 </span>
             </a>
         </div>
-        <div class="font-poppins-regular">
-            <a href="#" class="text-decoration-none sidebar-width
-                                nav-height d-flex align-items-center
-                                px-3 text-white">
-                <span>
-                    <i class="bi bi-door-open-fill"></i>
-                    Logout
-                </span>
-            </a>
-        </div>
+
     </div>
 </div>

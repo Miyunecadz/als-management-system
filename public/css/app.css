@@ -137,3 +137,16 @@
     display: none;
 }
 
+.user-icon {
+    height: 35px;
+    cursor: pointer;
+}
+
+
+@media (min-width: 576px) {
+    .sidebar-hidden {
+        display: inline;
+    }
+}
+
+

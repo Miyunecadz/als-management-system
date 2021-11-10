@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 class UserFactory extends Factory
 {
@@ -26,9 +27,10 @@ class UserFactory extends Factory
         return [
             'firstname' => $this->faker->firstname(),
             'lastname' => $this->faker->lastName(),
-            'username' => 'admin',
+//            'username' => 'admin'
+            'username' => $this->faker->userName(),
             'password' => Hash::make('1234'), // password
-            'role' => User::$ADMIN,
+            'role' => Arr::random([User::$ADMIN,User::$TEACHER])
         ];
     }
 

@@ -1,20 +1,208 @@
-@extends('layout.app')
+@extends('layout.navigations')
 
-@section('content')
-<div>
-    <div class="container-fluid p-0 d-flex" >
-        <div id="sidebar" class="bg-black-dark-flat sidebar-width  min-vh-100 ">
-            @include('layout.sidebar')
-        </div>
-        <div class="bg-light min-vh-100 max-vw-100 flex-grow-1">
-            @include('layout.nav')
+@section('contents')
+    <div class="content m-3 pt-1 font-poppins-regular">
+        <a href="#" class="btn btn-primary my-3 font-montserrat-bold">
+            <span>
+                <i class="bi bi-person-plus-fill"></i>
+                Add ALS
+            </span>
+        </a>
 
-            <div class="content bg-white">
-                asdasd
-            </div>
+
+        <div class="card p-3 overflow-auto">
+{{--            <div class="row mb-2">--}}
+{{--                <div class="col-md-4 ">--}}
+{{--                    <input id="searchDtable" type="text" class="form-control" placeholder="search....">--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+            <table id="myTable" class="table table-striped table-bordered ">
+                <thead>
+                <tr>
+                    <th>Firs tName</th>
+                    <th>Last Name</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
+
+    @push('scripts')
+        <script>
+            $(function() {
+
+                //
+// Pipelining function for DataTables. To be used to the `ajax` option of DataTables
+//
+                $.fn.dataTable.pipeline = function ( opts ) {
+                    // Configuration options
+                    var conf = $.extend( {
+                        pages: 5,     // number of pages to cache
+                        url: '',      // script url
+                        data: null,   // function or object with parameters to send to the server
+                                      // matching how `ajax.data` works in DataTables
+                        method: 'GET' // Ajax HTTP method
+                    }, opts );
+
+                    // Private variables for storing the cache
+                    var cacheLower = -1;
+                    var cacheUpper = null;
+                    var cacheLastRequest = null;
+                    var cacheLastJson = null;
+
+                    return function ( request, drawCallback, settings ) {
+                        var ajax          = false;
+                        var requestStart  = request.start;
+                        var drawStart     = request.start;
+                        var requestLength = request.length;
+                        var requestEnd    = requestStart + requestLength;
+
+                        if ( settings.clearCache ) {
+                            // API requested that the cache be cleared
+                            ajax = true;
+                            settings.clearCache = false;
+                        }
+                        else if ( cacheLower < 0 || requestStart < cacheLower || requestEnd > cacheUpper ) {
+                            // outside cached data - need to make a request
+                            ajax = true;
+                        }
+                        else if ( JSON.stringify( request.order )   !== JSON.stringify( cacheLastRequest.order ) ||
+                            JSON.stringify( request.columns ) !== JSON.stringify( cacheLastRequest.columns ) ||
+                            JSON.stringify( request.search )  !== JSON.stringify( cacheLastRequest.search )
+                        ) {
+                            // properties changed (ordering, columns, searching)
+                            ajax = true;
+                        }
+
+                        // Store the request for checking next time around
+                        cacheLastRequest = $.extend( true, {}, request );
+
+                        if ( ajax ) {
+                            // Need data from the server
+                            if ( requestStart < cacheLower ) {
+                                requestStart = requestStart - (requestLength*(conf.pages-1));
+
+                                if ( requestStart < 0 ) {
+                                    requestStart = 0;
+                                }
+                            }
+
+                            cacheLower = requestStart;
+                            cacheUpper = requestStart + (requestLength * conf.pages);
+
+                            request.start = requestStart;
+                            request.length = requestLength*conf.pages;
+
+                            // Provide the same `data` options as DataTables.
+                            if ( typeof conf.data === 'function' ) {
+                                // As a function it is executed with the data object as an arg
+                                // for manipulation. If an object is returned, it is used as the
+                                // data object to submit
+                                var d = conf.data( request );
+                                if ( d ) {
+                                    $.extend( request, d );
+                                }
+                            }
+                            else if ( $.isPlainObject( conf.data ) ) {
+                                // As an object, the data given extends the default
+                                $.extend( request, conf.data );
+                            }
+
+                            return $.ajax( {
+                                "type":     conf.method,
+                                "url":      conf.url,
+                                "data":     request,
+                                "dataType": "json",
+                                "cache":    false,
+                                "success":  function ( json ) {
+                                    cacheLastJson = $.extend(true, {}, json);
+
+                                    if ( cacheLower != drawStart ) {
+                                        json.data.splice( 0, drawStart-cacheLower );
+                                    }
+                                    if ( requestLength >= -1 ) {
+                                        json.data.splice( requestLength, json.data.length );
+                                    }
+
+                                    drawCallback( json );
+                                }
+                            } );
+                        }
+                        else {
+                            json = $.extend( true, {}, cacheLastJson );
+                            json.draw = request.draw; // Update the echo for each response
+                            json.data.splice( 0, requestStart-cacheLower );
+                            json.data.splice( requestLength, json.data.length );
+
+                            drawCallback(json);
+                        }
+                    }
+                };
+
+// Register an API method that will empty the pipelined data, forcing an Ajax
+// fetch on the next draw (i.e. `table.clearPipeline().draw()`)
+                $.fn.dataTable.Api.register( 'clearPipeline()', function () {
+                    return this.iterator( 'table', function ( settings ) {
+                        settings.clearCache = true;
+                    } );
+                } );
+
+
+                datatable = $('#myTable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    responsive: true,
+                    pagingType: 'simple',
+                    dom: '<"d-flex flex-column-reverse flex-md-row justify-content-md-between"<"col-md-3 col-12"B><"col-md-4 col-12 mb-2"f>>t<"d-flex justify-content-between"ip>',
+                    buttons: [
+                        'csv', 'excel'
+                    ],
+                    ajax: $.fn.dataTable.pipeline( {
+                        url : "{{ route('student') }}",
+                        method: 'GET',
+                        headers: {'X-Requested-With': 'XMLHttpRequest'},
+                        pages: 5,
+                    }),
+                    columns: [
+                        {data: 'firstname', name: 'firstname'},
+                        {data: 'lastname', name: 'lastname'},
+                        {data: 'role', name: 'role'},
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
+                        },
+                    ]
+                });
+
+                $('.dataTables_filter input')
+                    .unbind()
+                    .bind("input", function(e) { // Bind our desired behavior
+                        // If the length is 3 or more characters, or the user pressed ENTER, search
+                        if(this.value.length >= 3 || e.keyCode == 13) {
+                            // Call the API search function
+                            datatable.search(this.value).draw();
+                        }
+                        // Ensure we clear the search if they backspace far enough
+                        if(this.value == "") {
+                            datatable.search("").draw();
+                        }
+                        return;
+                    });
+
+                // $('#searchDtable').keyup(function() {
+                //     datatable.search($(this).val()).draw();
+                // });
+            })
+        </script>
+    @endpush
 @endsection
 
 

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
@@ -74,6 +75,26 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect(route('users.index'))->with(['success' => true, 'message' => 'User account has been successfully deleted']);
+    }
+
+    public function datatable(Request $request)
+    {
+
+        if($request->ajax()){
+
+            $data = User::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        else{
+            return "Hello";
+        }
     }
 }
 
