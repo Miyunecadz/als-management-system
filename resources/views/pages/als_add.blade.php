@@ -31,7 +31,24 @@
 
     <div class="content m-3 pt-1 font-poppins-regular">
         <form action="#" method="POST">
+            @csrf
             <div id="step1-form">
+                <div class="row mb-2">
+
+                    <div class="col-md-3 mb-3">
+                        <div class="form-floating ">
+                            <input type="date" name="enroldate" class="form-control" id="enroldate" placeholder="" value="{{ date('Y-m-d') }}">
+                            <label for="enroldate">Enroll Date</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="form-floating ">
+                            <input type="text" name="lrn" class="form-control" id="lrn" placeholder="LRN">
+                            <label for="lrn">LRN (if Available)</label>
+                        </div>
+                    </div>
+                </div>
+
                 <h3 class="pb-3">1. PERSONAL DETAILS</h3>
                 <div class="row ">
                 <span class="font-poppins-light mb-1">

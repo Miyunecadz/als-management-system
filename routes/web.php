@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::resource('users', UserController::class);
     Route::get('student/data', [UserController::class, 'datatable'])->name('student');
-    Route::get('als/create', function (){ return view('pages.als_add');})->name('createals');
-    Route::get('als/list', [UserController::class, 'alsList'])->name('listals');
+    Route::get('als/create', [StudentController::class, 'create'])->name('createals');
+    Route::get('als/list', [StudentController::class, 'index'])->name('listals');
 });

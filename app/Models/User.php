@@ -33,8 +33,15 @@ class User extends Authenticatable
     public static $ADMIN = 'admin';
     public static $TEACHER = 'teacher';
 
+    public function user()
+    {
+        return $this->hasMany(Student::class);
+    }
+
     public static function isValidRole($value)
     {
         return array_key_exists($value, self::$validRoles);
     }
+
+
 }

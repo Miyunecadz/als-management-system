@@ -31,7 +31,21 @@
 
     <div class="content m-3 pt-1 font-poppins-regular">
         <form action="#" method="POST">
+            @csrf
+            <input name="id" type="hidden" id="{{ $student->id }}">
             <div id="step1-form">
+                <div class="col-md-3 mb-3">
+                    <div class="form-floating ">
+                        <input type="date" name="enroldate" class="form-control" id="enroldate" placeholder="" value="{{ $student->enroldate }}">
+                        <label for="enroldate">Enroll Date</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="form-floating ">
+                        <input type="text" name="lrn" class="form-control" id="lrn" placeholder="LRN"  value="{{ $student->lrn }}">
+                        <label for="lrn">LRN (if Available)</label>
+                    </div>
+                </div>
                 <h3 class="pb-3">1. PERSONAL DETAILS</h3>
                 <div class="row ">
                 <span class="font-poppins-light mb-1">
@@ -39,25 +53,29 @@
                 </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Martin">
+                            <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Martin"
+                                   value="{{ $student->lastname }}">
                             <label for="lastname">Last Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Coco">
+                            <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Coco"
+                                   value="{{ $student->firstname }}">
                             <label for="firstname">First Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Pogi">
+                            <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Pogi"
+                                   value="{{ $student->middlename }}">
                             <label for="middlename">Middle Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="suffix" class="form-control" id="suffix" placeholder="Sr.">
+                            <input type="text" name="suffix" class="form-control" id="suffix" placeholder="Sr."
+                                   value="{{ $student->suffix }}">
                             <label for="suffix">Suffix</label>
                         </div>
                     </div>
@@ -69,25 +87,29 @@
                 </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="street" class="form-control" id="street" placeholder="Enter...">
+                            <input type="text" name="street" class="form-control" id="street" placeholder="Enter..."
+                                   value="{{ $student->street }}">
                             <label for="street">House No./Street/Sitio</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="barangay" class="form-control" id="barangay" placeholder="Enter...">
+                            <input type="text" name="barangay" class="form-control" id="barangay" placeholder="Enter..."
+                                   value="{{ $student->barangay }}">
                             <label for="barangay">Barangay</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="municipality" class="form-control" id="municipality"  placeholder="Enter...">
+                            <input type="text" name="municipality" class="form-control" id="municipality"  placeholder="Enter..."
+                                   value="{{ $student->municipality }}">
                             <label for="municipality">Municipality</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="province" class="form-control" id="province"  placeholder="Enter...">
+                            <input type="text" name="province" class="form-control" id="province"  placeholder="Enter..."
+                                   value="{{ $student->province }}">
                             <label for="province">Province</label>
                         </div>
                     </div>
@@ -96,13 +118,15 @@
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="date" name="birthday" class="form-control" id="birthday"  placeholder="Enter...">
+                            <input type="date" name="birthday" class="form-control" id="birthday"  placeholder="Enter..."
+                                   value="{{ $student->birthday }}">
                             <label for="birthday">Birthdate</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="birthplace" class="form-control" id="birthplace"  placeholder="Enter...">
+                            <input type="text" name="birthplace" class="form-control" id="birthplace"  placeholder="Enter..."
+                                   value="{{ $student->birthplace }}">
                             <label for="birthplace">Birth Place (Municipality)</label>
                         </div>
                     </div>
@@ -112,9 +136,9 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <select name="sex" id="sex" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option {{ $student->sex === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->sex === 'male' ? 'selected' : '' }} value="male">Male</option>
+                                <option {{ $student->sex === 'female' ? 'selected' : '' }} value="female">Female</option>
                             </select>
                             <label for="birthday">Sex</label>
                         </div>
@@ -122,12 +146,12 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <select name="civilstatus" id="civilstatus" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="single">Single</option>
-                                <option value="married">Married</option>
-                                <option value="widow">Widow/er</option>
-                                <option value="separated">Separated</option>
-                                <option value="solo">Solo Parent</option>
+                                <option {{ $student->civilstatus === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->civilstatus === 'single' ? 'selected' : '' }} value="single">Single</option>
+                                <option {{ $student->civilstatus === 'married' ? 'selected' : '' }} value="married">Married</option>
+                                <option {{ $student->civilstatus === 'widow' ? 'selected' : '' }} value="widow">Widow/er</option>
+                                <option {{ $student->civilstatus === 'separated' ? 'selected' : '' }} value="separated">Separated</option>
+                                <option {{ $student->civilstatus === 'solo' ? 'selected' : '' }} value="solo">Solo Parent</option>
                             </select>
                             <label for="civilstatus">Civil Status</label>
                         </div>
@@ -135,9 +159,9 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <select name="pwd" id="pwd" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option {{ $student->pwd === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->pwd === 'Yes' ? 'selected' : '' }} value="Yes">Yes</option>
+                                <option {{ $student->pwd === 'No' ? 'selected' : '' }} value="No">No</option>
                             </select>
                             <label for="pwd">PWD</label>
                         </div>
@@ -147,19 +171,22 @@
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="religion" class="form-control" id="religion"  placeholder="Enter...">
+                            <input type="text" name="religion" class="form-control" id="religion"  placeholder="Enter..."
+                                   value="{{ $student->religion }}">
                             <label for="religion">Religion</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="indigenous" class="form-control" id="indigenous"  placeholder="Enter...">
+                            <input type="text" name="indigenous" class="form-control" id="indigenous"  placeholder="Enter..."
+                                   value="{{ $student->indigenous }}">
                             <label for="indigenous">Indigenous People (Specify)</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="mothertongue" class="form-control" id="mothertongue"  placeholder="Enter...">
+                            <input type="text" name="mothertongue" class="form-control" id="mothertongue"  placeholder="Enter..."
+                                   value="{{ $student->mothertongue }}">
                             <label for="mothertongue">Mother Tongue</label>
                         </div>
                     </div>
@@ -171,25 +198,29 @@
             </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="flastname" class="form-control" id="flastname" placeholder="Martin">
+                            <input type="text" name="flastname" class="form-control" id="flastname" placeholder="Martin"
+                                   value="{{ $student->flastname }}">
                             <label for="flastname">Last Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="ffirstname" class="form-control" id="ffirstname" placeholder="Coco">
+                            <input type="text" name="ffirstname" class="form-control" id="ffirstname" placeholder="Coco"
+                                   value="{{ $student->ffirstname }}">
                             <label for="ffirstname">First Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="fmiddlename" class="form-control" id="fmiddlename" placeholder="Pogi">
+                            <input type="text" name="fmiddlename" class="form-control" id="fmiddlename" placeholder="Pogi"
+                                   value="{{ $student->fmiddlename }}">
                             <label for="fmiddlename">Middle Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="foccupation" class="form-control" id="foccupation" placeholder="Occupation">
+                            <input type="text" name="foccupation" class="form-control" id="foccupation" placeholder="Occupation"
+                                   value="{{ $student->foccupation }}">
                             <label for="foccupation">Occupation</label>
                         </div>
                     </div>
@@ -201,25 +232,29 @@
             </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="mlastname" class="form-control" id="mlastname" placeholder="Martin">
+                            <input type="text" name="mlastname" class="form-control" id="mlastname" placeholder="Martin"
+                                   value="{{ $student->mlastname }}">
                             <label for="mlastname">Last Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="mfirstname" class="form-control" id="mfirstname" placeholder="Coco">
+                            <input type="text" name="mfirstname" class="form-control" id="mfirstname" placeholder="Coco"
+                                   value="{{ $student->mfirstname }}">
                             <label for="mfirstname">First Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="mmiddlename" class="form-control" id="mmiddlename" placeholder="Pogi">
+                            <input type="text" name="mmiddlename" class="form-control" id="mmiddlename" placeholder="Pogi"
+                                   value="{{ $student->mmiddlename }}">
                             <label for="mmiddlename">Middle Name</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="moccupation" class="form-control" id="moccupation" placeholder="Occupation">
+                            <input type="text" name="moccupation" class="form-control" id="moccupation" placeholder="Occupation"
+                                   value="{{ $student->moccupation }}">
                             <label for="moccupation">Occupation</label>
                         </div>
                     </div>
@@ -233,18 +268,18 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <select name="lastgrade" id="lastgrade" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="K">K</option>
-                                <option value="G-1">G-1</option>
-                                <option value="G-2">G-2</option>
-                                <option value="G-3">G-3</option>
-                                <option value="G-4">G-4</option>
-                                <option value="G-5">G-5</option>
-                                <option value="G-6">G-6</option>
-                                <option value="G-7">G-7</option>
-                                <option value="G-8">G-8</option>
-                                <option value="G-9">G-9</option>
-                                <option value="G-10">G-10</option>
+                                <option {{ $student->lastgrade === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->lastgrade === 'K' ? 'selected' : '' }} value="K">K</option>
+                                <option {{ $student->lastgrade === 'G-1' ? 'selected' : '' }} value="G-1">G-1</option>
+                                <option {{ $student->lastgrade === 'G-2' ? 'selected' : '' }} value="G-2">G-2</option>
+                                <option {{ $student->lastgrade === 'G-3' ? 'selected' : '' }} value="G-3">G-3</option>
+                                <option {{ $student->lastgrade === 'G-4' ? 'selected' : '' }} value="G-4">G-4</option>
+                                <option {{ $student->lastgrade === 'G-5' ? 'selected' : '' }} value="G-5">G-5</option>
+                                <option {{ $student->lastgrade === 'G-6' ? 'selected' : '' }} value="G-6">G-6</option>
+                                <option {{ $student->lastgrade === 'G-7' ? 'selected' : '' }} value="G-7">G-7</option>
+                                <option {{ $student->lastgrade === 'G-8' ? 'selected' : '' }} value="G-8">G-8</option>
+                                <option {{ $student->lastgrade === 'G-9' ? 'selected' : '' }} value="G-9">G-9</option>
+                                <option {{ $student->lastgrade === 'G-10' ? 'selected' : '' }} value="G-10">G-10</option>
                             </select>
                             <label for="lastgrade">Last Grade Level</label>
                         </div>
@@ -255,21 +290,22 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <select name="dropout" id="dropout" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="No school in Barangay">No school in Barangay</option>
-                                <option value="School to far from home">School to far from home</option>
-                                <option value="Needed to help family">Needed to help family</option>
-                                <option value="Unable to pay for miscellaneous and other expenses">
+                                <option {{ $student->dropout === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->dropout === 'No school in Barangay' ? 'selected' : '' }} value="No school in Barangay">No school in Barangay</option>
+                                <option {{ $student->dropout === 'School to far from home' ? 'selected' : '' }} value="School to far from home">School to far from home</option>
+                                <option {{ $student->dropout === 'Needed to help family' ? 'selected' : '' }} value="Needed to help family">Needed to help family</option>
+                                <option {{ $student->dropout === 'Unable to pay for miscellaneous and other expenses' ? 'selected' : '' }} value="Unable to pay for miscellaneous and other expenses">
                                     Unable to pay for miscellaneous and other expenses
                                 </option>
-                                <option value="Other">Other</option>
+                                <option {{ $student->sex === '' ? 'selected' : '' }} value="Other">Other</option>
                             </select>
                             <label for="dropout">Why did you drop out of school? (for OSY only)</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="dropoutother" class="form-control" id="dropoutother" placeholder="Enter..">
+                            <input type="text" name="dropoutother" class="form-control" id="dropoutother" placeholder="Enter.."
+                                   value="{{ $student->dropoutother }}">
                             <label for="dropoutother">Other</label>
                         </div>
                     </div>
@@ -279,9 +315,9 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <select name="attendedals" id="attendedals" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                                <option {{ $student->attendedals === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->attendedals === 'Yes' ? 'selected' : '' }} value="Yes">Yes</option>
+                                <option {{ $student->attendedals === 'No' ? 'selected' : '' }} value="No">No</option>
                             </select>
                             <label for="attendedals">Have you attended ALS learning session before?</label>
                         </div>
@@ -291,25 +327,27 @@
                 </span>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="programname" class="form-control" id="programname" placeholder="Enter..">
+                            <input type="text" name="programname" class="form-control" id="programname" placeholder="Enter.."
+                                   value="{{ $student->programname }}">
                             <label for="programname">Name of the Program</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <select name="literacylevel" id="literacylevel" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="Basic">Basic</option>
-                                <option value="Elem">Elem</option>
-                                <option value="Sec">Sec</option>
-                                <option value="InfEd">InfEd</option>
+                                <option {{ $student->literacylevel === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->literacylevel === 'Basic' ? 'selected' : '' }} value="Basic">Basic</option>
+                                <option {{ $student->literacylevel === 'Elem' ? 'selected' : '' }} value="Elem">Elem</option>
+                                <option {{ $student->literacylevel === 'Sec' ? 'selected' : '' }} value="Sec">Sec</option>
+                                <option {{ $student->literacylevel === 'InfEd' ? 'selected' : '' }} value="InfEd">InfEd</option>
                             </select>
                             <label for="literacylevel">Level of Literacy</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="yearattended" class="form-control" id="yearattended" placeholder="Enter..">
+                            <input type="text" name="yearattended" class="form-control" id="yearattended" placeholder="Enter.."
+                                   value="{{ $student->yearattended }}">
                             <label for="yearattended">Year Attended</label>
                         </div>
                     </div>
@@ -319,16 +357,17 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <select name="completedprogram" id="completedprogram" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                                <option {{ $student->completedprogram === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->completedprogram === 'Yes' ? 'selected' : '' }} value="Yes">Yes</option>
+                                <option {{ $student->completedprogram === 'No' ? 'selected' : '' }} value="No">No</option>
                             </select>
                             <label for="completedprogram">Have you completed the program?</label>
                         </div>
                     </div>
                     <div class="col-md-8 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="notcompletedreason" class="form-control" id="notcompletedreason" placeholder="Enter..">
+                            <input type="text" name="notcompletedreason" class="form-control" id="notcompletedreason" placeholder="Enter.."
+                                   value="{{ $student->notcompletedreason }}">
                             <label for="notcompletedreason">If NO, state the reason</label>
                         </div>
                     </div>
@@ -345,13 +384,15 @@
                 </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="inkms" class="form-control" id="inkms" placeholder="Enter..">
+                            <input type="text" name="inkms" class="form-control" id="inkms" placeholder="Enter.."
+                                   value="{{ $student->inkms }}">
                             <label for="inkms">In Kms</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="inhours" class="form-control" id="inhours" placeholder="Enter..">
+                            <input type="text" name="inhours" class="form-control" id="inhours" placeholder="Enter.."
+                                   value="{{ $student->inhours }}">
                             <label for="inhours">In hours and minutes</label>
                         </div>
                     </div>
@@ -361,18 +402,19 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <select name="transportationtocenter" id="transportationtocenter" class="form-control">
-                                <option value="">-Select-</option>
-                                <option value="Walking">Walking</option>
-                                <option value="Motorcycle">Motorcycle</option>
-                                <option value="Bicycle">Bicycle</option>
-                                <option value="Other">Other</option>
+                                <option {{ $student->transportationtocenter === '' ? 'selected' : '' }} value="">-Select-</option>
+                                <option {{ $student->transportationtocenter === 'Walking' ? 'selected' : '' }} value="Walking">Walking</option>
+                                <option {{ $student->transportationtocenter === 'Motorcycle' ? 'selected' : '' }} value="Motorcycle">Motorcycle</option>
+                                <option {{ $student->transportationtocenter === 'Bicycle' ? 'selected' : '' }} value="Bicycle">Bicycle</option>
+                                <option {{ $student->transportationtocenter === 'Other' ? 'selected' : '' }} value="Other">Other</option>
                             </select>
                             <label for="transportationtocenter">How do you get from your home to Learning Center</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="othertransportation" class="form-control" id="othertransportation" placeholder="Enter..">
+                            <input type="text" name="othertransportation" class="form-control" id="othertransportation" placeholder="Enter.."
+                                   value="{{ $student->othertransportation }}">
                             <label for="othertransportation">Others(Pls. specify)</label>
                         </div>
                     </div>
@@ -384,43 +426,50 @@
                 </span>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionmonday" class="form-control" id="sessionmonday" placeholder="Enter..">
+                            <input type="text" name="sessionmonday" class="form-control" id="sessionmonday" placeholder="Enter.."
+                                   value="{{ $student->sessionmonday }}">
                             <label for="sessionmonday">Monday</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessiontuesday" class="form-control" id="sessiontuesday" placeholder="Enter..">
+                            <input type="text" name="sessiontuesday" class="form-control" id="sessiontuesday" placeholder="Enter.."
+                                   value="{{ $student->sessiontuesday }}">
                             <label for="sessiontuesday">Tuesday</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionwednesday" class="form-control" id="sessionwednesday" placeholder="Enter..">
+                            <input type="text" name="sessionwednesday" class="form-control" id="sessionwednesday" placeholder="Enter.."
+                                   value="{{ $student->sessionwednesday }}">
                             <label for="sessionwednesday">Wednesday</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionthursday" class="form-control" id="sessionthursday" placeholder="Enter..">
+                            <input type="text" name="sessionthursday" class="form-control" id="sessionthursday" placeholder="Enter.."
+                                   value="{{ $student->sessionthursday }}">
                             <label for="sessionthursday">Thursday</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionfriday" class="form-control" id="sessionfriday" placeholder="Enter..">
+                            <input type="text" name="sessionfriday" class="form-control" id="sessionfriday" placeholder="Enter.."
+                                   value="{{ $student->sessionfriday }}">
                             <label for="sessionfriday">Friday</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionsaturday" class="form-control" id="sessionsaturday" placeholder="Enter..">
+                            <input type="text" name="sessionsaturday" class="form-control" id="sessionsaturday" placeholder="Enter.."
+                                   value="{{ $student->sessionsaturday }}">
                             <label for="sessionsaturday">Saturday</label>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionsunday" class="form-control" id="sessionsunday" placeholder="Enter..">
+                            <input type="text" name="sessionsunday" class="form-control" id="sessionsunday" placeholder="Enter.."
+                                   value="{{ $student->sessionsunday }}">
                             <label for="sessionsunday">Sunday</label>
                         </div>
                     </div>
