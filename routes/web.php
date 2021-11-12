@@ -24,6 +24,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::resource('users', UserController::class);
     Route::get('student/data', [UserController::class, 'datatable'])->name('student');
-    Route::get('als/create', function (){ return view('pages.als_add');});
-    Route::get('als/list', [UserController::class, 'alsList']);
+    Route::get('als/create', function (){ return view('pages.als_add');})->name('createals');
+    Route::get('als/list', [UserController::class, 'alsList'])->name('listals');
 });
