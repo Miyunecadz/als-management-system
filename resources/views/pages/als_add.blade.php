@@ -441,7 +441,7 @@
         </div>
     </div>
 
-
+    @push('scripts')
     <script>
         $(function () {
             let current_step = 1
@@ -527,5 +527,6 @@
             })
         })
     </script>
+    @endpush
 @endsection
 

@@ -32,15 +32,4 @@
 
 
     </div>
-
-{{--    <form action="" method="GET" class="mx-2">--}}
-{{--        @csrf--}}
-{{--        <div class="input-icons">--}}
-{{--            <i class="bi bi-search icon"></i>--}}
-{{--            <input type="text" name="search"--}}
-{{--                   class="input-field font-poppins-regular--}}
-{{--                            border-0 rounded-pill search-input"--}}
-{{--                   required placeholder="Search....">--}}
-{{--        </div>--}}
-{{--    </form>--}}
 </nav>

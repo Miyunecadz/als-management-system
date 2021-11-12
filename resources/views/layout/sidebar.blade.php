@@ -5,7 +5,7 @@
     <div class="side-container d-flex justify-content-between flex-column pb-3 sidebar-height
                 ">
         <div class="font-poppins-regular d-flex flex-column ">
-            <a href="#" class="text-decoration-none sidebar-width
+            <a href="{{ url('/') }}" class="text-decoration-none sidebar-width
                                 nav-height d-flex align-items-center
                                 px-3 text-white mt-4 selected-nav">
                <span class="">
@@ -13,7 +13,7 @@
                    Home
                </span>
             </a>
-            <a href="#" class="text-decoration-none  sidebar-width
+            <a href="{{ url('als/create') }}" class="text-decoration-none  sidebar-width
                                 nav-height  d-flex align-items-center
                                 px-3 text-white">
                 <span>
@@ -21,7 +21,7 @@
                     Add ALS
                 </span>
             </a>
-            <a href="#" class="text-decoration-none  sidebar-width
+            <a href="{{ url('als/list') }}" class="text-decoration-none  sidebar-width
                                 nav-height  d-flex align-items-center
                                 px-3 text-white">
                 <span>
