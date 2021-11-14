@@ -2,7 +2,7 @@
 
 @section('contents')
     <div class="content m-3 pt-1 font-poppins-regular">
-        <a href="#" class="btn btn-primary my-3 font-montserrat-bold">
+        <a href="{{ url('als/create') }}" class="btn btn-primary my-3 font-montserrat-bold">
             <span>
                 <i class="bi bi-person-plus-fill"></i>
                 Add ALS

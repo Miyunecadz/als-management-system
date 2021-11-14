@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -82,7 +83,7 @@ class UserController extends Controller
 
         if($request->ajax()){
 
-            $data = User::latest()->get();
+            $data = User::query();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -93,7 +94,7 @@ class UserController extends Controller
                 ->make(true);
         }
         else{
-            return "Hello";
+            return \response()->json(['error' => 'Bad Request.'], Response::HTTP_BAD_REQUEST) ;
         }
     }
 }
