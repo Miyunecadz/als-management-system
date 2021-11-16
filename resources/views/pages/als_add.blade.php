@@ -133,7 +133,7 @@
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
-                            <label for="birthday">Sex</label>
+                            <label for="sex">Sex</label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
