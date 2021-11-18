@@ -11,11 +11,6 @@
 
 
         <div class="card p-3 overflow-auto">
-{{--            <div class="row mb-2">--}}
-{{--                <div class="col-md-4 ">--}}
-{{--                    <input id="searchDtable" type="text" class="form-control" placeholder="search....">--}}
-{{--                </div>--}}
-{{--            </div>--}}
 
             <table id="myTable" class="table table-striped table-bordered ">
                 <thead>
