@@ -12,7 +12,7 @@
 
         <div class="card p-3 overflow-auto">
 
-            <table id="myTable" class="table table-striped table-bordered ">
+            <table id="myTable" class="table table-striped table-bordered table-responsive">
                 <thead>
                 <tr>
                     <th>Firs tName</th>

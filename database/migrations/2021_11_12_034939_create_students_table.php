@@ -60,7 +60,7 @@ class CreateStudentsTable extends Migration
             $table->text('sessionfriday');
             $table->text('sessionsaturday');
             $table->text('sessionsunday');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -1,8 +1,10 @@
 <?php
 
+use App\Classes\Middleware\AllowRole;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +25,16 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/', function(){ return view('pages.dashboard'); })->name('dashboard');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::resource('users', UserController::class);
     Route::get('student/data', [UserController::class, 'datatable'])->name('student');
     Route::get('als/create', [StudentController::class, 'create'])->name('createals');
     Route::get('als/list', [StudentController::class, 'index'])->name('listals');
+
+    Route::post('student/personal', [StudentController::class, 'personal_details_validation'])->name('personal_validation');
+    Route::post('student/education', [StudentController::class, 'educational_information_validation'])->name('education_validation');
+    Route::post('student/accessibility', [StudentController::class, 'accessibility_and_availability_validation'])->name('accessibility_validation');
+
+    Route::middleware(AllowRole::role(User::$ADMIN))->group(function(){
+        Route::resource('users', UserController::class);
+    });
+
 });

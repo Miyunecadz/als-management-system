@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccessibilityAndAvailabilityRequest;
+use App\Http\Requests\EducationalInformationRequest;
+use App\Http\Requests\PersonalDetailsRequest;
+use App\Http\Requests\StoreStudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -33,9 +37,10 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        //
+        Student::create($request);
+        return redirect(route('createals'))->with(['success' => true, 'message' => 'New Student has been successfully added']);
     }
 
     /**
@@ -81,5 +86,20 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    public function personal_details_validation(PersonalDetailsRequest $request)
+    {
+        return response()->json(['validated' => true]);
+    }
+
+    public function educational_information_validation(EducationalInformationRequest $request)
+    {
+        return response()->json(['validated' => true]);
+    }
+
+    public function accessibility_and_availability_validation(AccessibilityAndAvailabilityRequest $request)
+    {
+        return response()->json(['validated' => true]);
     }
 }
