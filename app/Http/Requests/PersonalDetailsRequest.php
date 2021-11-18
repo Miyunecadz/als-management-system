@@ -31,6 +31,8 @@ class PersonalDetailsRequest extends FormRequest
             'enroldate' => 'required|date|before_or_equal:today',
             'lastname' => 'required|max:255',
             'firstname' => 'required',
+            'middlename' => 'required',
+            'suffix' => 'required',
             'street' => 'required',
             'barangay' => 'required',
             'municipality' => 'required',
@@ -45,9 +47,11 @@ class PersonalDetailsRequest extends FormRequest
             'mothertongue' => 'required',
             'flastname' => 'required',
             'ffirstname'=> 'required',
+            'fmiddlename' => 'required',
             'foccupation' => 'required',
             'mlastname' => 'required',
             'mfirstname' => 'required',
+            'mmiddlename' => 'required',
             'moccupation' => 'required'
         ];
     }

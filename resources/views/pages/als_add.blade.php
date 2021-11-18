@@ -30,21 +30,29 @@
     </div>
 
     <div class="content m-3 pt-1 font-poppins-regular">
-        <form action="#" method="POST">
+        <form action="{{ route('als.store') }}" method="POST" id="add_form">
             @csrf
             <div id="step1-form">
                 <div class="row mb-2">
 
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="date" name="enroldate" class="form-control" id="enroldate" placeholder="" value="{{ date('Y-m-d') }}">
-                            <label for="enroldate">Enroll Date</label>
+                            <input type="date" name="enroldate" class="form-control" id="enroldate" placeholder="" value="{{ date('Y-m-d') }}"
+                                   aria-describedby="enroldate-Validation">
+                            <label for="enroldate" >Enroll Date</label>
+                            <div id="enroldate-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="lrn" class="form-control" id="lrn" placeholder="LRN">
+                            <input type="text" name="lrn" class="form-control" id="lrn" placeholder="LRN"
+                                   aria-describedby="lrn-Validation">
                             <label for="lrn">LRN (if Available)</label>
+                            <div id="lrn-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,26 +64,42 @@
                 </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Martin">
+                            <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Martin"
+                                   aria-describedby="lastname-Validation">
                             <label for="lastname">Last Name</label>
+                            <div id="lastname-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Coco">
+                            <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Coco"
+                                   aria-describedby="firstname-Validation">
                             <label for="firstname">First Name</label>
+                            <div id="firstname-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Pogi">
+                            <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Pogi"
+                                   aria-describedby="middlename-Validation">
                             <label for="middlename">Middle Name</label>
+                            <div id="middlename-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="suffix" class="form-control" id="suffix" placeholder="Sr.">
+                            <input type="text" name="suffix" class="form-control" id="suffix" placeholder="Sr."
+                                   aria-describedby="suffix-Validation">
                             <label for="suffix">Suffix</label>
+                            <div id="suffix-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,26 +110,42 @@
                 </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="street" class="form-control" id="street" placeholder="Enter...">
+                            <input type="text" name="street" class="form-control" id="street" placeholder="Enter..."
+                                   aria-describedby="street-Validation">
                             <label for="street">House No./Street/Sitio</label>
+                            <div id="street-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="barangay" class="form-control" id="barangay" placeholder="Enter...">
+                            <input type="text" name="barangay" class="form-control" id="barangay" placeholder="Enter..."
+                                   aria-describedby="barangay-Validation">
                             <label for="barangay">Barangay</label>
+                            <div id="barangay-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="municipality" class="form-control" id="municipality"  placeholder="Enter...">
+                            <input type="text" name="municipality" class="form-control" id="municipality"  placeholder="Enter..."
+                                   aria-describedby="municipality-Validation">
                             <label for="municipality">Municipality</label>
+                            <div id="municipality-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="province" class="form-control" id="province"  placeholder="Enter...">
+                            <input type="text" name="province" class="form-control" id="province"  placeholder="Enter..."
+                                   aria-describedby="province-Validation">
                             <label for="province">Province</label>
+                            <div id="province-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,14 +153,22 @@
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="date" name="birthday" class="form-control" id="birthday"  placeholder="Enter...">
+                            <input type="date" name="birthday" class="form-control" id="birthday"  placeholder="Enter..."
+                                   aria-describedby="birthday-Validation">
                             <label for="birthday">Birthdate</label>
+                            <div id="birthday-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="birthplace" class="form-control" id="birthplace"  placeholder="Enter...">
+                            <input type="text" name="birthplace" class="form-control" id="birthplace"  placeholder="Enter..."
+                                   aria-describedby="birthplace-Validation">
                             <label for="birthplace">Birth Place (Municipality)</label>
+                            <div id="birthplace-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,17 +176,22 @@
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <select name="sex" id="sex" class="form-control">
+                            <select name="sex" id="sex" class="form-control"
+                                    aria-describedby="sex-Validation">
                                 <option value="">-Select-</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
                             <label for="sex">Sex</label>
+                            <div id="sex-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <select name="civilstatus" id="civilstatus" class="form-control">
+                            <select name="civilstatus" id="civilstatus" class="form-control"
+                                    aria-describedby="civilstatus-Validation">
                                 <option value="">-Select-</option>
                                 <option value="single">Single</option>
                                 <option value="married">Married</option>
@@ -147,16 +200,23 @@
                                 <option value="solo">Solo Parent</option>
                             </select>
                             <label for="civilstatus">Civil Status</label>
+                            <div id="civilstatus-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <select name="pwd" id="pwd" class="form-control">
+                            <select name="pwd" id="pwd" class="form-control"
+                                    aria-describedby="pwd-Validation">
                                 <option value="">-Select-</option>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
                             <label for="pwd">PWD</label>
+                            <div id="pwd-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,20 +224,32 @@
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="religion" class="form-control" id="religion"  placeholder="Enter...">
+                            <input type="text" name="religion" class="form-control" id="religion"  placeholder="Enter..."
+                                   aria-describedby="religion-Validation">
                             <label for="religion">Religion</label>
+                            <div id="religion-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="indigenous" class="form-control" id="indigenous"  placeholder="Enter...">
+                            <input type="text" name="indigenous" class="form-control" id="indigenous"  placeholder="Enter..."
+                                   aria-describedby="indigenous-Validation">
                             <label for="indigenous">Indigenous People (Specify)</label>
+                            <div id="indigenous-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="mothertongue" class="form-control" id="mothertongue"  placeholder="Enter...">
+                            <input type="text" name="mothertongue" class="form-control" id="mothertongue"  placeholder="Enter..."
+                                   aria-describedby="mothertongue-Validation">
                             <label for="mothertongue">Mother Tongue</label>
+                            <div id="mothertongue-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -188,26 +260,42 @@
             </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="flastname" class="form-control" id="flastname" placeholder="Martin">
+                            <input type="text" name="flastname" class="form-control" id="flastname" placeholder="Martin"
+                                   aria-describedby="flastname-Validation">
                             <label for="flastname">Last Name</label>
+                            <div id="flastname-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="ffirstname" class="form-control" id="ffirstname" placeholder="Coco">
+                            <input type="text" name="ffirstname" class="form-control" id="ffirstname" placeholder="Coco"
+                                   aria-describedby="ffirstname-Validation">
                             <label for="ffirstname">First Name</label>
+                            <div id="ffirstname-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="fmiddlename" class="form-control" id="fmiddlename" placeholder="Pogi">
+                            <input type="text" name="fmiddlename" class="form-control" id="fmiddlename" placeholder="Pogi"
+                                   aria-describedby="fmiddlename-Validation">
                             <label for="fmiddlename">Middle Name</label>
+                            <div id="fmiddlename-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="foccupation" class="form-control" id="foccupation" placeholder="Occupation">
+                            <input type="text" name="foccupation" class="form-control" id="foccupation" placeholder="Occupation"
+                                   aria-describedby="foccupation-Validation">
                             <label for="foccupation">Occupation</label>
+                            <div id="foccupation-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -218,26 +306,42 @@
             </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
-                            <input type="text" name="mlastname" class="form-control" id="mlastname" placeholder="Martin">
+                            <input type="text" name="mlastname" class="form-control" id="mlastname" placeholder="Martin"
+                                   aria-describedby="mlastname-Validation">
                             <label for="mlastname">Last Name</label>
+                            <div id="mlastname-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="mfirstname" class="form-control" id="mfirstname" placeholder="Coco">
+                            <input type="text" name="mfirstname" class="form-control" id="mfirstname" placeholder="Coco"
+                                   aria-describedby="mfirstname-Validation">
                             <label for="mfirstname">First Name</label>
+                            <div id="mfirstname-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="mmiddlename" class="form-control" id="mmiddlename" placeholder="Pogi">
+                            <input type="text" name="mmiddlename" class="form-control" id="mmiddlename" placeholder="Pogi"
+                                   aria-describedby="mmiddlename-Validation">
                             <label for="mmiddlename">Middle Name</label>
+                            <div id="mmiddlename-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="moccupation" class="form-control" id="moccupation" placeholder="Occupation">
+                            <input type="text" name="moccupation" class="form-control" id="moccupation" placeholder="Occupation"
+                                   aria-describedby="moccupation-Validation">
                             <label for="moccupation">Occupation</label>
+                            <div id="moccupation-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -249,7 +353,8 @@
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <select name="lastgrade" id="lastgrade" class="form-control">
+                            <select name="lastgrade" id="lastgrade" class="form-control"
+                                    aria-describedby="lastgrade-Validation">
                                 <option value="">-Select-</option>
                                 <option value="K">K</option>
                                 <option value="G-1">G-1</option>
@@ -264,6 +369,9 @@
                                 <option value="G-10">G-10</option>
                             </select>
                             <label for="lastgrade">Last Grade Level</label>
+                            <div id="lastgrade-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -271,7 +379,8 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <select name="dropout" id="dropout" class="form-control">
+                            <select name="dropout" id="dropout" class="form-control"
+                                    aria-describedby="dropout-Validation">
                                 <option value="">-Select-</option>
                                 <option value="No school in Barangay">No school in Barangay</option>
                                 <option value="School to far from home">School to far from home</option>
@@ -282,12 +391,19 @@
                                 <option value="Other">Other</option>
                             </select>
                             <label for="dropout">Why did you drop out of school? (for OSY only)</label>
+                            <div id="dropout-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="dropoutother" class="form-control" id="dropoutother" placeholder="Enter..">
+                            <input type="text" name="dropoutother" class="form-control" id="dropoutother" placeholder="Enter.."
+                                   aria-describedby="dropoutother-Validation">
                             <label for="dropoutother">Other</label>
+                            <div id="dropoutother-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -295,12 +411,16 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <select name="attendedals" id="attendedals" class="form-control">
+                            <select name="attendedals" id="attendedals" class="form-control"
+                                    aria-describedby="attendedals-Validation">
                                 <option value="">-Select-</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <label for="attendedals">Have you attended ALS learning session before?</label>
+                            <div id="attendedals-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <span class="font-poppins-light mb-1">
@@ -308,13 +428,18 @@
                 </span>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="programname" class="form-control" id="programname" placeholder="Enter..">
+                            <input type="text" name="programname" class="form-control" id="programname" placeholder="Enter.."
+                                   aria-describedby="programname-Validation">
                             <label for="programname">Name of the Program</label>
+                            <div id="programname-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <select name="literacylevel" id="literacylevel" class="form-control">
+                            <select name="literacylevel" id="literacylevel" class="form-control"
+                                    aria-describedby="literacylevel-Validation">
                                 <option value="">-Select-</option>
                                 <option value="Basic">Basic</option>
                                 <option value="Elem">Elem</option>
@@ -322,12 +447,19 @@
                                 <option value="InfEd">InfEd</option>
                             </select>
                             <label for="literacylevel">Level of Literacy</label>
+                            <div id="literacylevel-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="yearattended" class="form-control" id="yearattended" placeholder="Enter..">
+                            <input type="text" name="yearattended" class="form-control" id="yearattended" placeholder="Enter.."
+                                   aria-describedby="yearattended-Validation">
                             <label for="yearattended">Year Attended</label>
+                            <div id="yearattended-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -335,18 +467,26 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <select name="completedprogram" id="completedprogram" class="form-control">
+                            <select name="completedprogram" id="completedprogram" class="form-control"
+                                    aria-describedby="completedprogram-Validation">
                                 <option value="">-Select-</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <label for="completedprogram">Have you completed the program?</label>
+                            <div id="completedprogram-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="notcompletedreason" class="form-control" id="notcompletedreason" placeholder="Enter..">
+                            <input type="text" name="notcompletedreason" class="form-control" id="notcompletedreason" placeholder="Enter.."
+                                   aria-describedby="notcompletedreason-Validation">
                             <label for="notcompletedreason">If NO, state the reason</label>
+                            <div id="notcompletedreason-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -362,14 +502,22 @@
                 </span>
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="inkms" class="form-control" id="inkms" placeholder="Enter..">
+                            <input type="text" name="inkms" class="form-control" id="inkms" placeholder="Enter.."
+                                   aria-describedby="inkms-Validation">
                             <label for="inkms">In Kms</label>
+                            <div id="inkms-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="inhours" class="form-control" id="inhours" placeholder="Enter..">
+                            <input type="text" name="inhours" class="form-control" id="inhours" placeholder="Enter.."
+                                   aria-describedby="inhours-Validation">
                             <label for="inhours">In hours and minutes</label>
+                            <div id="inhours-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -377,7 +525,8 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <select name="transportationtocenter" id="transportationtocenter" class="form-control">
+                            <select name="transportationtocenter" id="transportationtocenter" class="form-control"
+                                    aria-describedby="transportationtocenter-Validation">
                                 <option value="">-Select-</option>
                                 <option value="Walking">Walking</option>
                                 <option value="Motorcycle">Motorcycle</option>
@@ -385,12 +534,19 @@
                                 <option value="Other">Other</option>
                             </select>
                             <label for="transportationtocenter">How do you get from your home to Learning Center</label>
+                            <div id="transportationtocenter-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="othertransportation" class="form-control" id="othertransportation" placeholder="Enter..">
+                            <input type="text" name="othertransportation" class="form-control" id="othertransportation" placeholder="Enter.."
+                                   aria-describedby="othertransportation-Validation">
                             <label for="othertransportation">Others(Pls. specify)</label>
+                            <div id="othertransportation-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -401,44 +557,72 @@
                 </span>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionmonday" class="form-control" id="sessionmonday" placeholder="Enter..">
+                            <input type="text" name="sessionmonday" class="form-control" id="sessionmonday" placeholder="Enter.."
+                                   aria-describedby="sessionmonday-Validation">
                             <label for="sessionmonday">Monday</label>
+                            <div id="sessionmonday-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessiontuesday" class="form-control" id="sessiontuesday" placeholder="Enter..">
+                            <input type="text" name="sessiontuesday" class="form-control" id="sessiontuesday" placeholder="Enter.."
+                                   aria-describedby="sessiontuesday-Validation">
                             <label for="sessiontuesday">Tuesday</label>
+                            <div id="sessiontuesday-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionwednesday" class="form-control" id="sessionwednesday" placeholder="Enter..">
+                            <input type="text" name="sessionwednesday" class="form-control" id="sessionwednesday" placeholder="Enter.."
+                                   aria-describedby="sessionwednesday-Validation">
                             <label for="sessionwednesday">Wednesday</label>
+                            <div id="sessionwednesday-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionthursday" class="form-control" id="sessionthursday" placeholder="Enter..">
+                            <input type="text" name="sessionthursday" class="form-control" id="sessionthursday" placeholder="Enter.."
+                                   aria-describedby="sessionthursday-Validation">
                             <label for="sessionthursday">Thursday</label>
+                            <div id="sessionthursday-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionfriday" class="form-control" id="sessionfriday" placeholder="Enter..">
+                            <input type="text" name="sessionfriday" class="form-control" id="sessionfriday" placeholder="Enter.."
+                                   aria-describedby="sessionfriday-Validation">
                             <label for="sessionfriday">Friday</label>
+                            <div id="sessionfriday-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionsaturday" class="form-control" id="sessionsaturday" placeholder="Enter..">
+                            <input type="text" name="sessionsaturday" class="form-control" id="sessionsaturday" placeholder="Enter.."
+                                   aria-describedby="sessionsaturday-Validation">
                             <label for="sessionsaturday">Saturday</label>
+                            <div id="sessionsaturday-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
-                            <input type="text" name="sessionsunday" class="form-control" id="sessionsunday" placeholder="Enter..">
+                            <input type="text" name="sessionsunday" class="form-control" id="sessionsunday" placeholder="Enter.."
+                                   aria-describedby="sessionsunday-Validation">
                             <label for="sessionsunday">Sunday</label>
+                            <div id="sessionsunday-Validation" class="invalid-feedback">
+                                Please provide a valid input.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -474,47 +658,250 @@
             let carousel_control = $('#carousel-control')
             let next_carousel = $('#next-carousel')
             let prev_carousel = $('#prev-carousel')
+            let add_form = $('#add_form')
+
+            // Input Variables
 
             let success = true
 
             $('#next-carousel').click(() => {
                 if(current_step == 1){
-                    prev_carousel.removeClass('d-none')
-                    carousel_control.removeClass('col-md-6 col-md-3').addClass('col-md-6')
-                    step1_form.addClass('d-none')  //remove this if error
-                    step2_form.removeClass('d-none') //remove this if error
-                    step2_progress.removeClass('bg-secondary').addClass('bg-primary')
-                    step2_checkpoint.removeClass('bg-secondary').addClass('bg-primary')
-                    step1_checkpoint.find('span').addClass('d-none')
-                    if (success) {
-                        step1_checkpoint.find('.bi-check-lg').removeClass('d-none')
-                        step1_progress.removeClass('bg-danger bg-primary').addClass('bg-primary')
-                        step1_checkpoint.find('.bi-exclamation-lg').removeClass('d-none').addClass('d-none')
-                    }else {
-                        step1_checkpoint.find('.bi-check-lg').removeClass('d-none').addClass('d-none')
-                        step1_progress.removeClass('bg-danger bg-primary').addClass('bg-danger')
-                        step1_checkpoint.find('.bi-exclamation-lg').removeClass('d-none')
-                        step1_checkpoint.removeClass('bg-secondary bg-primary').addClass('bg-danger')
-                    }
-                    current_step++;
+
+
+                    //STEP 1. PERSONAL
+                    let enroldate = $('#enroldate').val()
+                    let lrn = $('#lrn').val()
+                    let lastname = $('#lastname').val()
+                    let firstname = $('#firstname').val()
+                    let middlename = $('#middlename').val()
+                    let suffix = $('#suffix').val()
+                    let street = $('#street').val()
+                    let barangay = $('#barangay').val()
+                    let municipality = $('#municipality').val()
+                    let province = $('#province').val()
+                    let birthday = $('#birthday').val()
+                    let birthplace = $('#birthplace').val()
+                    let sex = $('#sex').val()
+                    let civilstatus = $('#civilstatus').val()
+                    let pwd = $('#pwd').val()
+                    let religion = $('#religion').val()
+                    let indigenous = $('#indigenous').val()
+                    let mothertongue = $('#mothertongue').val()
+                    let flastname = $('#flastname').val()
+                    let ffirstname = $('#ffirstname').val()
+                    let fmiddlename = $('#fmiddlename').val()
+                    let foccupation = $('#foccupation').val()
+                    let mlastname = $('#mlastname').val()
+                    let mfirstname = $('#mfirstname').val()
+                    let mmiddlename = $('#mmiddlename').val()
+                    let moccupation = $('#moccupation').val()
+
+                    //RESET FORM VALIDATION
+                    step1_form.find('input').removeClass('is-invalid')
+                    step1_form.find('select').removeClass('is-invalid')
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('personal_validation') }}',
+                        data: {
+                            enroldate,
+                            lrn,
+                            lastname,
+                            firstname,
+                            middlename,
+                            suffix,
+                            street,
+                            barangay,
+                            municipality,
+                            province,
+                            birthday,
+                            birthplace,
+                            sex,
+                            civilstatus,
+                            pwd,
+                            religion,
+                            indigenous,
+                            mothertongue,
+                            flastname,
+                            ffirstname,
+                            fmiddlename,
+                            foccupation,
+                            mlastname,
+                            mfirstname,
+                            mmiddlename,
+                            moccupation,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+
+                            prev_carousel.removeClass('d-none')
+                            carousel_control.removeClass('col-md-6 col-md-3').addClass('col-md-6')
+                            step2_progress.removeClass('bg-secondary').addClass('bg-primary')
+                            step2_checkpoint.removeClass('bg-secondary').addClass('bg-primary')
+
+                            step1_checkpoint.find('.bi-check-lg').removeClass('d-none')
+                            step1_progress.removeClass('bg-danger bg-primary').addClass('bg-primary')
+                            step1_checkpoint.find('.bi-exclamation-lg').removeClass('d-none').addClass('d-none')
+                            step1_checkpoint.removeClass('bg-secondary bg-primary bg-danger').addClass('bg-primary')
+                            step1_checkpoint.find('span').addClass('d-none')
+
+
+                            step1_form.addClass('d-none')  //remove this if error
+                            step2_form.removeClass('d-none') //remove this if error
+
+                            current_step++;
+                        },
+                        error: function (err) {
+
+                            if (err.status == 422) {
+                                step1_checkpoint.find('.bi-check-lg').removeClass('d-none').addClass('d-none')
+                                step1_progress.removeClass('bg-danger bg-primary').addClass('bg-danger')
+                                step1_checkpoint.find('.bi-exclamation-lg').removeClass('d-none')
+                                step1_checkpoint.removeClass('bg-secondary bg-primary').addClass('bg-danger')
+
+                                step1_checkpoint.find('span').addClass('d-none')
+
+
+                                $.each(err.responseJSON.errors, function (i, error) {
+                                    let el = $(document).find('[name="'+i+'"]')
+                                    let elvalidate = $(document).find('#'+i+'-Validation')
+                                    el.addClass('is-invalid')
+                                    elvalidate.html(error)
+                                })
+                            }
+
+                        }
+                    })
                 }else if(current_step == 2){
-                    step2_form.addClass('d-none') //Remove this if error
-                    step3_form.removeClass('d-none') //Remove this if error
-                    step3_progress.removeClass('bg-secondary').addClass('bg-primary')
-                    step3_checkpoint.removeClass('bg-secondary').addClass('bg-primary')
-                    step2_checkpoint.find('span').addClass('d-none')
-                    if (success) {
-                        step2_checkpoint.find('.bi-check-lg').removeClass('d-none')
-                    }else {
-                        step2_checkpoint.find('.bi-check-lg').removeClass('d-none').addClass('d-none')
-                        step2_progress.removeClass('bg-secondary bg-primary').addClass('bg-danger')
-                        step2_checkpoint.removeClass('bg-secondary bg-primary').addClass('bg-danger')
-                        step2_checkpoint.find('.bi-exclamation-lg').removeClass('d-none')
-                    }
-                    next_carousel.html("Finish")
-                    current_step++;
-                }else {
-                    // Form submit
+
+                    //STEP 2. EDUCATIONAL
+                    let lastgrade = $('#lastgrade').val()
+                    let dropout = $('#dropout').val()
+                    let dropoutother = $('#dropoutother').val()
+                    let attendedals = $('#attendedals').val()
+                    let programname = $('#programname').val()
+                    let literacylevel = $('#literacylevel').val()
+                    let yearattended = $('#yearattended').val()
+                    let completedprogram = $('#completedprogram').val()
+                    let notcompletedreason = $('#notcompletedreason').val()
+
+                    //RESET FORM VALIDATION
+                    step2_form.find('input').removeClass('is-invalid')
+                    step2_form.find('select').removeClass('is-invalid')
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('education_validation') }}',
+                        data: {
+                            lastgrade,
+                            dropout,
+                            dropoutother,
+                            attendedals,
+                            programname,
+                            literacylevel,
+                            yearattended,
+                            completedprogram,
+                            notcompletedreason,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+
+                            step3_progress.removeClass('bg-secondary').addClass('bg-primary')
+                            step3_checkpoint.removeClass('bg-secondary').addClass('bg-primary')
+
+                            step2_checkpoint.find('span').addClass('d-none')
+                            step2_checkpoint.find('.bi-check-lg').removeClass('d-none')
+                            step2_progress.removeClass('bg-secondary bg-primary bg-danger').addClass('bg-primary')
+                            step2_checkpoint.removeClass('bg-secondary bg-primary bg-danger').addClass('bg-primary')
+
+                            step2_form.addClass('d-none') //Remove this if error
+                            step3_form.removeClass('d-none') //Remove this if error
+
+                            next_carousel.html("Finish")
+                            current_step++;
+                        },
+                        error: function (err) {
+                            if (err.status == 422) {
+                                step2_checkpoint.find('.bi-check-lg').removeClass('d-none').addClass('d-none')
+                                step2_progress.removeClass('bg-secondary bg-primary').addClass('bg-danger')
+                                step2_checkpoint.removeClass('bg-secondary bg-primary').addClass('bg-danger')
+                                step2_checkpoint.find('.bi-exclamation-lg').removeClass('d-none')
+
+                                step2_checkpoint.find('.bi-check-lg').removeClass('d-none')
+
+                                console.log(err.responseJSON)
+
+                                $.each(err.responseJSON.errors, function (i, error) {
+                                    let el = $(document).find('[name="'+i+'"]')
+                                    let elvalidate = $(document).find('#'+i+'-Validation')
+                                    el.addClass('is-invalid')
+                                    elvalidate.html(error)
+                                })
+                            }
+
+                        }
+                    })
+                }else if(current_step == 3){
+                    //STEP 3. ACCESSIBILITY
+                    let inkms = $('#inkms').val()
+                    let inhours = $('#inhours').val()
+                    let transportationtocenter = $('#transportationtocenter').val()
+                    let othertransportation = $('#othertransportation').val()
+                    let sessionmonday = $('#sessionmonday').val()
+                    let sessiontuesday = $('#sessiontuesday').val()
+                    let sessionwednesday = $('#sessionwednesday').val()
+                    let sessionthursday = $('#sessionthursday').val()
+                    let sessionfriday = $('#sessionfriday').val()
+                    let sessionsaturday = $('#sessionsaturday').val()
+                    let sessionsunday = $('#sessionsunday').val()
+
+                    //RESET FORM VALIDATION
+                    step3_form.find('input').removeClass('is-invalid')
+                    step3_form.find('select').removeClass('is-invalid')
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('accessibility_validation') }}',
+                        data: {
+                            inkms,
+                            inhours,
+                            transportationtocenter,
+                            othertransportation,
+                            sessionmonday,
+                            sessiontuesday,
+                            sessionwednesday,
+                            sessionthursday,
+                            sessionfriday,
+                            sessionsaturday,
+                            sessionsunday,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            add_form.submit()
+                        },
+                        error: function (err) {
+                            if (err.status == 422) {
+                                step3_checkpoint.find('.bi-check-lg').removeClass('d-none').addClass('d-none')
+                                step3_progress.removeClass('bg-secondary bg-primary').addClass('bg-danger')
+                                step3_checkpoint.removeClass('bg-secondary bg-primary').addClass('bg-danger')
+                                step3_checkpoint.find('.bi-exclamation-lg').removeClass('d-none')
+
+                                console.warn(err.responseJSON.errors)
+
+                                $.each(err.responseJSON.errors, function (i, error) {
+                                    let el = $(document).find('[name="'+i+'"]')
+                                    let elvalidate = $(document).find('#'+i+'-Validation')
+                                    el.addClass('is-invalid')
+                                    elvalidate.html(error)
+                                })
+                            }
+
+                        }
+                    })
                 }
             })
 

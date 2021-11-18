@@ -35,7 +35,7 @@ class EducationalInformationRequest extends FormRequest
             'literacylevel' => 'required_if:attendedals,Yes',
             'yearattended' => 'required_if:attendedals,Yes',
             'completedprogram' => 'required',
-            'notcompletedreason' => 'required_if:comepletedprogram,No'
+            'notcompletedreason' => 'required_if:completedprogram,No'
         ];
     }
 

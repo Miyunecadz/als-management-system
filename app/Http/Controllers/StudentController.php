@@ -88,6 +88,7 @@ class StudentController extends Controller
         //
     }
 
+
     public function personal_details_validation(PersonalDetailsRequest $request)
     {
         return response()->json(['validated' => true]);
