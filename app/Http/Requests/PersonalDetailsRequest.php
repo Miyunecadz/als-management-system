@@ -46,10 +46,6 @@ class PersonalDetailsRequest extends FormRequest
             'ffirstname'=> 'required',
             'fmiddlename' => 'required',
             'foccupation' => 'required',
-            'mlastname' => 'required',
-            'mfirstname' => 'required',
-            'mmiddlename' => 'required',
-            'moccupation' => 'required'
         ];
     }
 

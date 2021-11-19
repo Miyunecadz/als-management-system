@@ -50,7 +50,7 @@ class StudentController extends Controller
         $data['user_id'] = $request->user()->id;
         Student::create($data);
         return redirect(route('students.index'))
-            ->with(['success' => true, 'message' => 'New Student has been successfully added']);
+            ->with('success','New Student has been successfully added');
     }
 
     /**

@@ -33,10 +33,10 @@
         $(() => {
             @if(session('success'))
                 toastr.options = { delay: 2000};
-            toastr.success('{{ session('success') }}');
+                toastr.success('{{ session('success') }}');
             @elseif(session('error'))
                 toastr.options = { delay: 2000};
-            toastr.success('{{ session('success') }}');
+                toastr.error('{{ session('error') }}');
             @endif
         });
     </script>
