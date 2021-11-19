@@ -11,18 +11,18 @@
             <span
                 class="rounded-circle dropdown-toggle user-icon"
                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Juan Dela Cruz
+                {{ auth()->user()->firstname . ' ' . auth()->user()->lastname }}
             </span>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                 <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ route('profile') }}">
                         <i class="bi bi-person-circle"></i>
                          Edit Profile
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ route('logout') }}">
                         <i class="bi bi-box-arrow-right"></i>
                          Log-out
                     </a>

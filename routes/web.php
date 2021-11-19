@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
             ->with(['title' => 'Dashboard | ALS DATABASE', 'linkname' => 'dashboard']); })
         ->name('dashboard');
 
-    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 
     Route::get('als/list', [StudentController::class, 'index'])->name('listals');
@@ -40,8 +40,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('student/education', [StudentController::class, 'educational_information_validation'])->name('education_validation');
     Route::post('student/accessibility', [StudentController::class, 'accessibility_and_availability_validation'])->name('accessibility_validation');
 
-    Route::middleware(AllowRole::role(User::$ADMIN))->group(function(){
-        Route::resource('users', UserController::class);
-    });
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::resource('users', UserController::class)->only('update');
+//
+//    Route::middleware(AllowRole::role(User::$ADMIN))->group(function(){
+//        Route::resource('users', UserController::class);
+//    });
 
 });
