@@ -9,6 +9,14 @@ class Student extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+
     public function student()
     {
         return $this->hasOne(User::class);

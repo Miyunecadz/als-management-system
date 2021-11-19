@@ -9,7 +9,7 @@
             <tr>
                 <th>Firs tName</th>
                 <th>Last Name</th>
-                <th>Role</th>
+                <th>Municipality</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -148,7 +148,24 @@
                     pagingType: 'simple',
                     dom: '<"d-flex flex-column-reverse flex-md-row justify-content-md-between"<"col-md-3 col-12"B><"col-md-4 col-12 mb-2"f>>t<"d-flex justify-content-between"ip>',
                     buttons: [
-                        'csv', 'excel'
+                        {
+                            extend: 'csv',
+                            exportOptions: {
+                                columns: 'th:not(:last-child)'
+                            }
+                        },
+                        {
+                            extend: 'excel',
+                            exportOptions: {
+                                columns: 'th:not(:last-child)'
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            exportOptions: {
+                                columns: 'th:not(:last-child)'
+                            }
+                        }
                     ],
                     ajax: $.fn.dataTable.pipeline( {
                         url : "{{ route('student') }}",
@@ -159,7 +176,7 @@
                     columns: [
                         {data: 'firstname', name: 'firstname'},
                         {data: 'lastname', name: 'lastname'},
-                        {data: 'role', name: 'role'},
+                        {data: 'municipality', name: 'municipality'},
                         {
                             data: 'action',
                             name: 'action',

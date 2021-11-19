@@ -30,7 +30,7 @@
     </div>
 
     <div class="content m-3 pt-1 font-poppins-regular">
-        <form action="{{ route('als.store') }}" method="POST" id="add_form">
+        <form action="{{ route('students.store') }}" method="POST" id="add_form">
             @csrf
             <div id="step1-form">
                 <div class="row mb-2">
@@ -210,8 +210,8 @@
                             <select name="pwd" id="pwd" class="form-control"
                                     aria-describedby="pwd-Validation">
                                 <option value="">-Select-</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                             <label for="pwd">PWD</label>
                             <div id="pwd-Validation" class="invalid-feedback">

@@ -2,7 +2,7 @@
 
 @section('contents')
     <div class="content m-3 pt-1 font-poppins-regular">
-        <a href="{{ url('als/create') }}" class="btn btn-primary my-3 font-montserrat-bold">
+        <a href="{{ route('students.create') }}" class="btn btn-primary my-3 font-montserrat-bold">
             <span>
                 <i class="bi bi-person-plus-fill"></i>
                 Add ALS
@@ -17,7 +17,7 @@
                 <tr>
                     <th>Firs tName</th>
                     <th>Last Name</th>
-                    <th>Role</th>
+                    <th>Municipality</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -167,7 +167,7 @@
                     columns: [
                         {data: 'firstname', name: 'firstname'},
                         {data: 'lastname', name: 'lastname'},
-                        {data: 'role', name: 'role'},
+                        {data: 'municipality', name: 'municipality'},
                         {
                             data: 'action',
                             name: 'action',

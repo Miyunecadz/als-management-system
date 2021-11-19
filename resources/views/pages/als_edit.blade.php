@@ -30,9 +30,11 @@
     </div>
 
     <div class="content m-3 pt-1 font-poppins-regular">
-        <form action="{{ route('als.update') }}" method="POST" id="edit_form">
+
+{{--        {{ dd($student) }}--}}
+        <form action="{{ route('students.update', $student->id) }}" method="POST" id="edit_form">
             @csrf
-            <input name="id" type="hidden" id="{{ $student->id }}">
+            @method('PUT')
             <div id="step1-form">
                 <div class="row mb-2">
 
@@ -66,7 +68,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
                             <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Martin"
-                                   aria-describedby="lastname-Validation" value="{{ $student->lastname }}">>
+                                   aria-describedby="lastname-Validation" value="{{ $student->lastname }}">
                             <label for="lastname">Last Name</label>
                             <div id="lastname-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -76,7 +78,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Coco"
-                                   aria-describedby="firstname-Validation" value="{{ $student->firstname }}">>
+                                   aria-describedby="firstname-Validation" value="{{ $student->firstname }}">
                             <label for="firstname">First Name</label>
                             <div id="firstname-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -86,7 +88,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Pogi"
-                                   aria-describedby="middlename-Validation" value="{{ $student->middlename }}">>
+                                   aria-describedby="middlename-Validation" value="{{ $student->middlename }}">
                             <label for="middlename">Middle Name</label>
                             <div id="middlename-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -96,7 +98,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="suffix" class="form-control" id="suffix" placeholder="Sr."
-                                   aria-describedby="suffix-Validation" value="{{ $student->suffix }}">>
+                                   aria-describedby="suffix-Validation" value="{{ $student->suffix }}">
                             <label for="suffix">Suffix</label>
                             <div id="suffix-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -112,7 +114,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
                             <input type="text" name="street" class="form-control" id="street" placeholder="Enter..."
-                                   aria-describedby="street-Validation" value="{{ $student->street }}">>
+                                   aria-describedby="street-Validation" value="{{ $student->street }}">
                             <label for="street">House No./Street/Sitio</label>
                             <div id="street-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -122,7 +124,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="barangay" class="form-control" id="barangay" placeholder="Enter..."
-                                   aria-describedby="barangay-Validation" value="{{ $student->barangay }}">>
+                                   aria-describedby="barangay-Validation" value="{{ $student->barangay }}">
                             <label for="barangay">Barangay</label>
                             <div id="barangay-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -132,7 +134,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="municipality" class="form-control" id="municipality"  placeholder="Enter..."
-                                   aria-describedby="municipality-Validation" value="{{ $student->municipality }}">>
+                                   aria-describedby="municipality-Validation" value="{{ $student->municipality }}">
                             <label for="municipality">Municipality</label>
                             <div id="municipality-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -142,7 +144,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="province" class="form-control" id="province"  placeholder="Enter..."
-                                   aria-describedby="province-Validation" value="{{ $student->province }}">>
+                                   aria-describedby="province-Validation" value="{{ $student->province }}">
                             <label for="province">Province</label>
                             <div id="province-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -155,7 +157,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="date" name="birthday" class="form-control" id="birthday"  placeholder="Enter..."
-                                   aria-describedby="birthday-Validation" value="{{ $student->birthday }}">>
+                                   aria-describedby="birthday-Validation" value="{{ $student->birthday }}">
                             <label for="birthday">Birthdate</label>
                             <div id="birthday-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -165,7 +167,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <input type="text" name="birthplace" class="form-control" id="birthplace"  placeholder="Enter..."
-                                   aria-describedby="birthplace-Validation" value="{{ $student->birthplace }}">>
+                                   aria-describedby="birthplace-Validation" value="{{ $student->birthplace }}">
                             <label for="birthplace">Birth Place (Municipality)</label>
                             <div id="birthplace-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -226,7 +228,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="religion" class="form-control" id="religion"  placeholder="Enter..."
-                                   aria-describedby="religion-Validation" value="{{ $student->religion }}">>
+                                   aria-describedby="religion-Validation" value="{{ $student->religion }}">
                             <label for="religion">Religion</label>
                             <div id="religion-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -236,7 +238,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <input type="text" name="indigenous" class="form-control" id="indigenous"  placeholder="Enter..."
-                                   aria-describedby="indigenous-Validation" value="{{ $student->indigenous }}">>
+                                   aria-describedby="indigenous-Validation" value="{{ $student->indigenous }}">
                             <label for="indigenous">Indigenous People (Specify)</label>
                             <div id="indigenous-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -246,7 +248,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <input type="text" name="mothertongue" class="form-control" id="mothertongue"  placeholder="Enter..."
-                                   aria-describedby="mothertongue-Validation" value="{{ $student->mothertongue }}">>
+                                   aria-describedby="mothertongue-Validation" value="{{ $student->mothertongue }}">
                             <label for="mothertongue">Mother Tongue</label>
                             <div id="mothertongue-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -262,7 +264,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
                             <input type="text" name="flastname" class="form-control" id="flastname" placeholder="Martin"
-                                   aria-describedby="flastname-Validation" value="{{ $student->flastname }}">>
+                                   aria-describedby="flastname-Validation" value="{{ $student->flastname }}">
                             <label for="flastname">Last Name</label>
                             <div id="flastname-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -272,7 +274,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="ffirstname" class="form-control" id="ffirstname" placeholder="Coco"
-                                   aria-describedby="ffirstname-Validation" value="{{ $student->ffirstname }}">>
+                                   aria-describedby="ffirstname-Validation" value="{{ $student->ffirstname }}">
                             <label for="ffirstname">First Name</label>
                             <div id="ffirstname-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -282,7 +284,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="fmiddlename" class="form-control" id="fmiddlename" placeholder="Pogi"
-                                   aria-describedby="fmiddlename-Validation" value="{{ $student->fmiddlename }}">>
+                                   aria-describedby="fmiddlename-Validation" value="{{ $student->fmiddlename }}">
                             <label for="fmiddlename">Middle Name</label>
                             <div id="fmiddlename-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -292,7 +294,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="foccupation" class="form-control" id="foccupation" placeholder="Occupation"
-                                   aria-describedby="foccupation-Validation" value="{{ $student->foccupation }}">>
+                                   aria-describedby="foccupation-Validation" value="{{ $student->foccupation }}">
                             <label for="foccupation">Occupation</label>
                             <div id="foccupation-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -308,7 +310,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating ">
                             <input type="text" name="mlastname" class="form-control" id="mlastname" placeholder="Martin"
-                                   aria-describedby="mlastname-Validation" value="{{ $student->mlastname }}">>
+                                   aria-describedby="mlastname-Validation" value="{{ $student->mlastname }}">
                             <label for="mlastname">Last Name</label>
                             <div id="mlastname-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -318,7 +320,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="mfirstname" class="form-control" id="mfirstname" placeholder="Coco"
-                                   aria-describedby="mfirstname-Validation" value="{{ $student->mfirstname }}">>
+                                   aria-describedby="mfirstname-Validation" value="{{ $student->mfirstname }}">
                             <label for="mfirstname">First Name</label>
                             <div id="mfirstname-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -328,7 +330,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="mmiddlename" class="form-control" id="mmiddlename" placeholder="Pogi"
-                                   aria-describedby="mmiddlename-Validation" value="{{ $student->mmiddlename }}">>
+                                   aria-describedby="mmiddlename-Validation" value="{{ $student->mmiddlename }}">
                             <label for="mmiddlename">Middle Name</label>
                             <div id="mmiddlename-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -338,7 +340,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="moccupation" class="form-control" id="moccupation" placeholder="Occupation"
-                                   aria-describedby="moccupation-Validation" value="{{ $student->moccupation }}">>
+                                   aria-describedby="moccupation-Validation" value="{{ $student->moccupation }}">
                             <label for="moccupation">Occupation</label>
                             <div id="moccupation-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -400,7 +402,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="dropoutother" class="form-control" id="dropoutother" placeholder="Enter.."
-                                   aria-describedby="dropoutother-Validation" value="{{ $student->dropoutother }}">>
+                                   aria-describedby="dropoutother-Validation" value="{{ $student->dropoutother }}">
                             <label for="dropoutother">Other</label>
                             <div id="dropoutother-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -430,7 +432,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <input type="text" name="programname" class="form-control" id="programname" placeholder="Enter.."
-                                   aria-describedby="programname-Validation" value="{{ $student->programname }}">>
+                                   aria-describedby="programname-Validation" value="{{ $student->programname }}">
                             <label for="programname">Name of the Program</label>
                             <div id="programname-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -440,7 +442,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <select name="literacylevel" id="literacylevel" class="form-control"
-                                    aria-describedby="literacylevel-Validation" value="{{ $student->lrn }}">>
+                                    aria-describedby="literacylevel-Validation" value="{{ $student->lrn }}">
                                 <option {{ $student->literacylevel === '' ? 'selected' : '' }} value="">-Select-</option>
                                 <option {{ $student->literacylevel === 'Basic' ? 'selected' : '' }} value="Basic">Basic</option>
                                 <option {{ $student->literacylevel === 'Elem' ? 'selected' : '' }} value="Elem">Elem</option>
@@ -456,7 +458,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <input type="text" name="yearattended" class="form-control" id="yearattended" placeholder="Enter.."
-                                   aria-describedby="yearattended-Validation" value="{{ $student->yearattended }}">>
+                                   aria-describedby="yearattended-Validation" value="{{ $student->yearattended }}">
                             <label for="yearattended">Year Attended</label>
                             <div id="yearattended-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -483,7 +485,7 @@
                     <div class="col-md-8 mb-3">
                         <div class="form-floating">
                             <input type="text" name="notcompletedreason" class="form-control" id="notcompletedreason" placeholder="Enter.."
-                                   aria-describedby="notcompletedreason-Validation" value="{{ $student->notcompletedreason }}">>
+                                   aria-describedby="notcompletedreason-Validation" value="{{ $student->notcompletedreason }}">
                             <label for="notcompletedreason">If NO, state the reason</label>
                             <div id="notcompletedreason-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -504,7 +506,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-floating">
                             <input type="text" name="inkms" class="form-control" id="inkms" placeholder="Enter.."
-                                   aria-describedby="inkms-Validation" value="{{ $student->inkms }}">>
+                                   aria-describedby="inkms-Validation" value="{{ $student->inkms }}">
                             <label for="inkms">In Kms</label>
                             <div id="inkms-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -514,7 +516,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-floating">
                             <input type="text" name="inhours" class="form-control" id="inhours" placeholder="Enter.."
-                                   aria-describedby="inhours-Validation" value="{{ $student->inhours }}">>
+                                   aria-describedby="inhours-Validation" value="{{ $student->inhours }}">
                             <label for="inhours">In hours and minutes</label>
                             <div id="inhours-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -543,7 +545,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="othertransportation" class="form-control" id="othertransportation" placeholder="Enter.."
-                                   aria-describedby="othertransportation-Validation" value="{{ $student->othertransportation }}">>
+                                   aria-describedby="othertransportation-Validation" value="{{ $student->othertransportation }}">
                             <label for="othertransportation">Others(Pls. specify)</label>
                             <div id="othertransportation-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -559,7 +561,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="sessionmonday" class="form-control" id="sessionmonday" placeholder="Enter.."
-                                   aria-describedby="sessionmonday-Validation" value="{{ $student->sessionmonday }}">>
+                                   aria-describedby="sessionmonday-Validation" value="{{ $student->sessionmonday }}">
                             <label for="sessionmonday">Monday</label>
                             <div id="sessionmonday-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -569,7 +571,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="sessiontuesday" class="form-control" id="sessiontuesday" placeholder="Enter.."
-                                   aria-describedby="sessiontuesday-Validation" value="{{ $student->sessiontuesday }}">>
+                                   aria-describedby="sessiontuesday-Validation" value="{{ $student->sessiontuesday }}">
                             <label for="sessiontuesday">Tuesday</label>
                             <div id="sessiontuesday-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -579,7 +581,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="sessionwednesday" class="form-control" id="sessionwednesday" placeholder="Enter.."
-                                   aria-describedby="sessionwednesday-Validation" value="{{ $student->sessionwednesday }}">>
+                                   aria-describedby="sessionwednesday-Validation" value="{{ $student->sessionwednesday }}">
                             <label for="sessionwednesday">Wednesday</label>
                             <div id="sessionwednesday-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -589,7 +591,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="sessionthursday" class="form-control" id="sessionthursday" placeholder="Enter.."
-                                   aria-describedby="sessionthursday-Validation" value="{{ $student->sessionthursday }}">>
+                                   aria-describedby="sessionthursday-Validation" value="{{ $student->sessionthursday }}">
                             <label for="sessionthursday">Thursday</label>
                             <div id="sessionthursday-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -599,7 +601,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="sessionfriday" class="form-control" id="sessionfriday" placeholder="Enter.."
-                                   aria-describedby="sessionfriday-Validation" value="{{ $student->sessionfriday }}">>
+                                   aria-describedby="sessionfriday-Validation" value="{{ $student->sessionfriday }}">
                             <label for="sessionfriday">Friday</label>
                             <div id="sessionfriday-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -609,7 +611,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="sessionsaturday" class="form-control" id="sessionsaturday" placeholder="Enter.."
-                                   aria-describedby="sessionsaturday-Validation" value="{{ $student->sessionsaturday }}">>
+                                   aria-describedby="sessionsaturday-Validation" value="{{ $student->sessionsaturday }}">
                             <label for="sessionsaturday">Saturday</label>
                             <div id="sessionsaturday-Validation" class="invalid-feedback">
                                 Please provide a valid input.
@@ -619,7 +621,7 @@
                     <div class="col-md-6 mb-3">
                         <div class="form-floating">
                             <input type="text" name="sessionsunday" class="form-control" id="sessionsunday" placeholder="Enter.."
-                                   aria-describedby="sessionsunday-Validation" value="{{ $student->sessionsunday }}">>
+                                   aria-describedby="sessionsunday-Validation" value="{{ $student->sessionsunday }}">
                             <label for="sessionsunday">Sunday</label>
                             <div id="sessionsunday-Validation" class="invalid-feedback">
                                 Please provide a valid input.

@@ -1,6 +1,6 @@
 {{--Get Route Name--}}
 @php
-    $routename = Route::currentRouteName();
+    $routename = isset($linkname)? $linkname: '' ;
 @endphp
 
 
@@ -20,10 +20,10 @@
                    Home
                </span>
             </a>
-            <a href="{{ url('als/create') }}" class="text-decoration-none  sidebar-width
+            <a href="{{ route('students.create') }}" class="text-decoration-none  sidebar-width
                                 nav-height  d-flex align-items-center
                                 px-3 text-white
-                                {{ $routename === 'createals' ? 'selected-nav' : '' }}">
+                                {{ $routename === 'create student' ? 'selected-nav' : '' }}">
                 <span>
                     <i class="bi bi-person-plus-fill"></i>
                     Add ALS
@@ -32,7 +32,7 @@
             <a href="{{ url('als/list') }}" class="text-decoration-none  sidebar-width
                                 nav-height  d-flex align-items-center
                                 px-3 text-white
-                                {{ $routename === 'listals' ? 'selected-nav' : '' }}">
+                                {{ $routename === 'list student' ? 'selected-nav' : '' }}">
                 <span>
                     <i class="bi bi-person-lines-fill"></i>
                     ALS List

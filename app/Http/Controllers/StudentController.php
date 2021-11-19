@@ -7,7 +7,10 @@ use App\Http\Requests\EducationalInformationRequest;
 use App\Http\Requests\PersonalDetailsRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Yajra\DataTables\DataTables;
 
 class StudentController extends Controller
 {
@@ -18,7 +21,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('pages.als_list');
+        return view('pages.als_list')
+            ->with(['title' => 'ALS list | ALS DATABASE', 'linkname' => 'list student']);
     }
 
     /**
@@ -28,19 +32,23 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('pages.als_add');
+        return view('pages.als_add')
+            ->with(['title' => 'Enroll Form | ALS DATABASE', 'linkname' => 'create student']);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreStudentRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreStudentRequest $request)
     {
-        Student::create($request);
-        return redirect(route('createals'))->with(['success' => true, 'message' => 'New Student has been successfully added']);
+        $data = $request->except('_token');
+        $data['user_id'] = $request->user()->id;
+        Student::create($data);
+        return redirect(route('students.index'))
+            ->with(['success' => true, 'message' => 'New Student has been successfully added']);
     }
 
     /**
@@ -62,19 +70,23 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $name= $student->firstname . ' '. $student->middlename. ' '. $student->lastname;
+        return view('pages.als_edit', compact('student'))
+            ->with(['title' => 'Edit Form | '. $name, 'linkname' => 'dashboard']);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreStudentRequest  $request
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StoreStudentRequest $request, Student $student)
     {
-        //
+        $student->update($request->except('_token', 'id'));
+        return redirect()->route('students.index')
+            ->with('success','Student updated successfully');
     }
 
     /**
@@ -85,7 +97,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return redirect()->route('students.index')
+            ->with('success','Student deleted successfully');
     }
 
 
@@ -102,5 +116,34 @@ class StudentController extends Controller
     public function accessibility_and_availability_validation(AccessibilityAndAvailabilityRequest $request)
     {
         return response()->json(['validated' => true]);
+    }
+
+    public function datatable(Request $request)
+    {
+
+        if($request->ajax()){
+
+            $data = Student::query()->where('user_id', $request->user()->id);
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<div class="d-flex">
+                                    <a href="'. route('students.edit', $row->id ) .'" class="edit btn btn-success btn-sm">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <form action="'. route('students.destroy', $row) . '" onsubmit="return confirm(\'Are you sure?\');" method="POST">
+                                         <input type="hidden" name="_token" value="'. csrf_token() .'">
+                                         <input type="hidden" name="_method" value="DELETE">
+                                         <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i> Delete</button>
+                                    </form>
+                                </div>    ';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        else{
+            return response()->json(['error' => 'Bad Request.'], Response::HTTP_BAD_REQUEST) ;
+        }
     }
 }

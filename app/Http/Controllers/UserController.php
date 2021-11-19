@@ -51,7 +51,8 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('pages.users.index', ['users' => User::where('role', USER::$TEACHER)]);
+        return view('pages.users.index', ['users' => User::where('role', USER::$TEACHER)])
+            ->with(['title' => 'ALS list | ALS DATABASE', 'linkname' => 'list student']);
     }
 
     public function create()
