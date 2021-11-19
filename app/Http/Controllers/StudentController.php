@@ -32,6 +32,8 @@ class StudentController extends Controller
      */
     public function create()
     {
+
+//        dd('hello');
         return view('pages.als_add')
             ->with(['title' => 'Enroll Form | ALS DATABASE', 'linkname' => 'create student']);
     }
