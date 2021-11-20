@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class StudentController extends Controller
@@ -119,6 +120,7 @@ class StudentController extends Controller
     {
         return response()->json(['validated' => true]);
     }
+
 
     public function datatable(Request $request)
     {

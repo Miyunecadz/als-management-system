@@ -23,9 +23,7 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/', function(){
-        return view('pages.dashboard')
-            ->with(['title' => 'Dashboard | ALS DATABASE', 'linkname' => 'dashboard']); })
+    Route::get('/', [UserController::class, 'dashboard'])
         ->name('dashboard');
 
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
@@ -42,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::resource('users', UserController::class)->only('update');
+
+    Route::get('test',[StudentController::class, 'getDiscreteTotal']);
 //
 //    Route::middleware(AllowRole::role(User::$ADMIN))->group(function(){
 //        Route::resource('users', UserController::class);

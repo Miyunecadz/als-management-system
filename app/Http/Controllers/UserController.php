@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -14,6 +15,40 @@ use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
+
+    public function dashboard()
+    {
+        if (! auth()->user()->role == 'admin') return view('pages.dashboard')
+            ->with(['title' => 'Dashboard | ALS DATABASE', 'linkname' => 'dashboard']);
+
+        $years = DB::table('students')
+            ->select(DB::raw('
+                    YEAR(enroldate) as years,
+                    count(*) as year_total
+                '))
+            ->groupBy('years')
+            ->get();
+
+        $res = DB::table('students')
+            ->select(DB::raw('
+                count(case when sex = "male" then 1 else null end ) as total_male,
+                count(case when sex = "female" then 1 else null end ) as total_female,
+                count(*) as total_student
+                '))
+            ->get();
+        $years_cleaned = [];
+        foreach ($years as $year)
+        {
+            $years_cleaned[$year->years] = $year->year_total;
+        }
+
+        $data = $res->toArray();
+        $data['trend'] = $years_cleaned;
+
+        return view('pages.dashboard', compact('data'))
+            ->with(['title' => 'Dashboard | ALS DATABASE', 'linkname' => 'dashboard']);
+    }
+
     public function login(Request $request)
     {
 
