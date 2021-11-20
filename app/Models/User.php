@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->hasMany(Student::class);
     }
 
+    public function isAdmin()
+    {
+        return $this->role == 'admin';
+    }
+
     public static function isValidRole($value)
     {
         return array_key_exists($value, self::$validRoles);

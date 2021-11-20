@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        if (! auth()->user()->role == 'admin') return view('pages.dashboard')
+        if (! auth()->user()->isAdmin()) return view('pages.dashboard')
             ->with(['title' => 'Dashboard | ALS DATABASE', 'linkname' => 'dashboard']);
 
         $years = DB::table('students')
