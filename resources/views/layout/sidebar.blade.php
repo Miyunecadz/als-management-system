@@ -40,7 +40,7 @@
                         Teachers
                     </span>
                 </a>
-                <a href="{{ route('users.create') }}" class="text-decoration-none  sidebar-width
+                <a href="{{ (url('als/list')) }}" class="text-decoration-none  sidebar-width
                                 nav-height  d-flex align-items-center
                                 px-3 text-white
                                 {{ $routename === 'list student' ? 'selected-nav' : '' }}">

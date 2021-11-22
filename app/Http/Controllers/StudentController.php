@@ -20,8 +20,18 @@ class StudentController extends Controller
      */
     public function index()
     {
+        $all_column = false;
         return view('pages.als_list')
-            ->with(['title' => 'ALS list | ALS DATABASE', 'linkname' => 'list student']);
+            ->with(['title' => 'Student list | ALS DATABASE', 'linkname' => 'list student'])
+            ->with(compact('all_column'));
+    }
+
+    public function displayAllColumn()
+    {
+        $all_column = true;
+        return view('pages.als_list')
+            ->with(['title' => 'Student list | ALS DATABASE', 'linkname' => 'list student'])
+            ->with(compact('all_column'));
     }
 
     /**
