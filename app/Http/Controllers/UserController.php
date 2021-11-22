@@ -33,6 +33,7 @@ class UserController extends Controller
             ->select(DB::raw('
                 count(case when sex = "male" then 1 else null end ) as total_male,
                 count(case when sex = "female" then 1 else null end ) as total_female,
+                count(case when(datediff(current_date, enroldate)) < 30  then 1 else null end) as new_student,
                 count(*) as total_student
                 '))
             ->get();
@@ -88,31 +89,32 @@ class UserController extends Controller
     public function index()
     {
         return view('pages.users.index', ['users' => User::where('role', USER::$TEACHER)])
-            ->with(['title' => 'ALS list | ALS DATABASE', 'linkname' => 'list student']);
+            ->with(['title' => 'Teachers | ALS DATABASE', 'linkname' => 'list teacher']);
     }
 
     public function create()
     {
-        return view('pages.users.create');
+        return view('pages.users.create')
+            ->with(['title' => 'Create Teacher | ALS DATABASE', 'linkname' => 'create teacher']);
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
         User::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
+            'fullname' => $request->fullname,
+            'designation' => $request->designation,
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'role' => $request->role
+            'role' => 'teacher'
         ]);
 
-        return redirect(route('users.index'))->with(['success' , 'New User account has been successfully added']);
+        return redirect(route('dashboard'))->with(['success' , 'New User account has been successfully added']);
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect(route('users.index'))->with(['success' , 'User account has been successfully deleted']);
+        return redirect(route('dashboard'))->with(['success' , 'User account has been successfully deleted']);
     }
 
     public function edit(User $user)
@@ -125,6 +127,7 @@ class UserController extends Controller
         $data = $request->all();
         $data['auth_id'] = $user->id;
         $validator = Validator::make($request->all(), [
+            'fullname' => 'required',
             'username' => [
                 'required',
                 Rule::unique('users')->ignore($data['auth_id'])
@@ -159,16 +162,41 @@ class UserController extends Controller
             ->with(['title' => 'Edit Profile | ALS DATABASE', 'linkname' => 'dashboard']);
     }
 
+    public function teacherEdit($id)
+    {
+        $user = User::find($id);
+        return view('pages.users.edit', compact('user'))
+            ->with(['title' => 'Edit Profile | ALS DATABASE', 'linkname' => 'dashboard']);
+    }
+
+    public function toggleStatus($id)
+    {
+        $user = User::find($id);
+        $user->status = !$user->status;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Teacher status changed!');
+    }
+
     public function datatable(Request $request)
     {
 
         if($request->ajax()){
 
-            $data = User::query();
+            $data = User::query()->where('role','<>', 'teacher');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '
+                                <div class="d-flex">
+                                     <a href="'. route('teachers.edit', $row->id ) .'" class="edit btn btn-success me-2 btn-sm">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <a href="'. route('teachers.status', $row->id ) .'"
+                                    class="edit btn '. ($row->status == true? 'btn-success': 'btn-danger') . ' btn-sm">
+                                        '. ($row->status == true? '<i class="bi bi-eye"></i> Active' : '<i class="bi bi-eye-slash"></i> InActive') . '
+                                    </a>
+                                </div>   ';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])

@@ -7,10 +7,8 @@ use App\Http\Requests\EducationalInformationRequest;
 use App\Http\Requests\PersonalDetailsRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Models\Student;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class StudentController extends Controller
@@ -50,7 +48,7 @@ class StudentController extends Controller
         $data = $request->except('_token');
         $data['user_id'] = $request->user()->id;
         Student::create($data);
-        return redirect(route('students.index'))
+        return redirect(route('dashboard'))
             ->with('success','New Student has been successfully added');
     }
 
@@ -126,13 +124,12 @@ class StudentController extends Controller
     {
 
         if($request->ajax()){
-
             $data = Student::query()->where('user_id', $request->user()->id);
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '<div class="d-flex">
-                                    <a href="'. route('students.edit', $row->id ) .'" class="edit btn btn-success btn-sm">
+                                    <a href="'. route('students.edit', $row->id ) .'" class="edit btn btn-success me-2 btn-sm">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
                                     <form action="'. route('students.destroy', $row) . '" onsubmit="return confirm(\'Are you sure?\');" method="POST">

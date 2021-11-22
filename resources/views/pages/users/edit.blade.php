@@ -12,9 +12,13 @@
         @method('PUT')
         <div class="col-md-4 col-12 mb-3 d-md-flex justify-content-center flex-column">
             <div class="form-floating ">
-                <input type="text" name="fullname" class="form-control mb-3" id="fullname" placeholder="Martin" readonly
-                    value="{{ old('fullname')? old('fullname') : $user->firstname .' '. $user->lastname }}">
+                <input type="text" name="fullname" class="form-control mb-3 {{ $errors->has('username')? 'is-invalid': '' }}"
+                       id="fullname" placeholder="Martin" value="{{ old('fullname')? old('fullname') : $user->fullname}}"
+                       aria-describedby="fullname-Validation">
                 <label for="fullname">Full Name</label>
+                <div id="fullname-Validation" class="invalid-feedback">
+                    {{ $errors->has('fullname')?$errors->first('fullname'): '' }}
+                </div>
             </div>
             <div class="form-floating ">
                 <input type="text" name="username" class="form-control mb-3 {{ $errors->has('username')? 'is-invalid': '' }}"

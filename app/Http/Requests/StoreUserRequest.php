@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\ValidRole;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 
 class StoreUserRequest extends FormRequest
 {
@@ -25,11 +27,12 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'username' => 'required|unique:users,username|exist:users',
-            'password' => 'required',
-            'role' => ['required', new ValidRole]
+            'fullname' => 'required',
+            'designation' => 'required',
+            'username' => 'required|unique:users,username',
+            'password' => 'required|confirmed|min:6',
+            'role' => 'teacher'
         ];
     }
+
 }

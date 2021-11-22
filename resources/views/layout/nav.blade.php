@@ -11,7 +11,7 @@
             <span
                 class="rounded-circle dropdown-toggle user-icon"
                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ auth()->user()->firstname . ' ' . auth()->user()->lastname }}
+                {{ auth()->user()->fullname }}
             </span>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 

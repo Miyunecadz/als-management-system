@@ -20,13 +20,43 @@
                    Home
                </span>
             </a>
+
+            @if(auth()->user()->isAdmin())
+                <a href="{{ route('users.create') }}" class="text-decoration-none  sidebar-width
+                                nav-height  d-flex align-items-center
+                                px-3 text-white
+                                {{ $routename === 'create teacher' ? 'selected-nav' : '' }}">
+                    <span>
+                        <i class="bi bi-person-plus-fill"></i>
+                        Create Teacher
+                    </span>
+                </a>
+                <a href="{{ route('users.index') }}" class="text-decoration-none  sidebar-width
+                                nav-height  d-flex align-items-center
+                                px-3 text-white
+                                {{ $routename === 'list teacher' ? 'selected-nav' : '' }}">
+                    <span>
+                        <i class="bi bi-person-lines-fill"></i>
+                        Teachers
+                    </span>
+                </a>
+                <a href="{{ route('users.create') }}" class="text-decoration-none  sidebar-width
+                                nav-height  d-flex align-items-center
+                                px-3 text-white
+                                {{ $routename === 'list student' ? 'selected-nav' : '' }}">
+                    <span>
+                        <i class="bi bi-list-stars"></i>
+                        List Student
+                    </span>
+                </a>
+            @else
             <a href="{{ route('students.create') }}" class="text-decoration-none  sidebar-width
                                 nav-height  d-flex align-items-center
                                 px-3 text-white
                                 {{ $routename === 'create student' ? 'selected-nav' : '' }}">
                 <span>
                     <i class="bi bi-person-plus-fill"></i>
-                    Add ALS
+                    Add Student
                 </span>
             </a>
             <a href="{{ url('als/list') }}" class="text-decoration-none  sidebar-width
@@ -35,9 +65,10 @@
                                 {{ $routename === 'list student' ? 'selected-nav' : '' }}">
                 <span>
                     <i class="bi bi-person-lines-fill"></i>
-                    ALS List
+                    Student List
                 </span>
             </a>
+            @endif
         </div>
 
     </div>

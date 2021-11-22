@@ -2,8 +2,10 @@
     <h3 class="text-black-dark-flat">Dashboard</h3>
     <div class="row row-col-4 d-flex justify-content-around mt-4 px-sm-3">
         <div class="callout callout-primary col-md-5 col-lg-auto mb-md-3 mb-sm-3">
-            <h4>New Students</h4>
-            Hello
+            <h4>New Students
+                <i class="bi bi-info-circle-fill fs-6" data-bs-toggle="tooltip" data-bs-placement="top" title="Within 30 days"></i>
+            </h4>
+            {{ $data[0]->new_student }}
         </div>
         <div class="callout callout-success col-md-5  col-lg-auto  mb-md-3  mb-sm-3">
             <h4>Total Students</h4>
@@ -23,7 +25,7 @@
     <div class="row px-3 d-flex justify-content-around mt-4">
         <div class="card col-lg-8 col-md-12 p-0  mb-sm-3">
             <div class="card-header">
-                Enrollee Trend
+                Trend
             </div>
             <div class="card-body">
                 <canvas id="myChart"></canvas>
@@ -49,7 +51,7 @@
             type: 'line',
             data: {
                 datasets: [{
-                    label: '# of Enrollee',
+                    label: '# of Enrolled Student',
                     data: {!! json_encode($data['trend']) !!} ,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

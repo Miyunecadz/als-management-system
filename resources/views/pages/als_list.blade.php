@@ -7,7 +7,7 @@
         <table id="myTable" class="table table-striped table-bordered ">
             <thead>
             <tr>
-                <th>Firs tName</th>
+                <th>First Name</th>
                 <th>Last Name</th>
                 <th>Municipality</th>
                 <th>Action</th>
@@ -140,6 +140,8 @@
                     } );
                 } );
 
+
+                
 
                 datatable = $('#myTable').DataTable({
                     processing: true,

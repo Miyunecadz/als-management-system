@@ -41,10 +41,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::resource('users', UserController::class)->only('update');
 
-    Route::get('test',[StudentController::class, 'getDiscreteTotal']);
-//
-//    Route::middleware(AllowRole::role(User::$ADMIN))->group(function(){
-//        Route::resource('users', UserController::class);
-//    });
+    Route::middleware(AllowRole::role(User::$ADMIN))->group(function(){
+        Route::resource('users', UserController::class)->except('update');
+        Route::get('teachers', [UserController::class, 'datatable'])->name('all.users');
+        Route::get('teachers/{id}', [UserController::class, 'toggleStatus'])->name('teachers.status');
+        Route::get('profile/{id}', [UserController::class, 'teacherEdit'])->name('teachers.edit');
+    });
 
 });

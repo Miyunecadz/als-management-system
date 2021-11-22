@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class UserFactory extends Factory
 {
@@ -25,12 +26,13 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'firstname' => $this->faker->firstname(),
-            'lastname' => $this->faker->lastName(),
+            'fullname' => $this->faker->name(),
+            'designation' => $this->faker->emoji(),
 //            'username' => 'admin'
             'username' => $this->faker->userName(),
             'password' => Hash::make('1234'), // password
-            'role' => Arr::random([User::$ADMIN,User::$TEACHER])
+            'role' => Arr::random([User::$ADMIN,User::$TEACHER]),
+            'status' => Arr::random([true, false])
         ];
     }
 
