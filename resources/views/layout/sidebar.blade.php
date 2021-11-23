@@ -49,6 +49,15 @@
                         List Student
                     </span>
                 </a>
+                <a href="{{ route('generateExport') }}" class="text-decoration-none  sidebar-width
+                                nav-height  d-flex align-items-center
+                                px-3 text-white
+                                {{ $routename === 'generate' ? 'selected-nav' : '' }}">
+                    <span>
+                        <i class="bi bi-list-stars"></i>
+                        Generate Report
+                    </span>
+                </a>
             @else
             <a href="{{ route('students.create') }}" class="text-decoration-none  sidebar-width
                                 nav-height  d-flex align-items-center

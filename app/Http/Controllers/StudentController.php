@@ -9,6 +9,7 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class StudentController extends Controller
@@ -127,6 +128,56 @@ class StudentController extends Controller
     public function accessibility_and_availability_validation(AccessibilityAndAvailabilityRequest $request)
     {
         return response()->json(['validated' => true]);
+    }
+
+    public function generateExport()
+    {
+        $displayTable = '';
+        return view('pages.generateExport')
+            ->with(compact('displayTable'))
+            ->with(['title' => 'Generate Export | ALS DATABASE', 'linkname' => 'generate']);
+    }
+
+    public function generateTable(Request $request)
+    {
+        $data = '';
+        $displayTable = '';
+
+        if($request->exporttype == 'column'){
+            $data = DB::table('students');
+
+           for($i=0; $i < count($request->colname); $i++){
+               if($request->colname[$i] != '') {
+                   $data->where($request->colname[$i], 'like', '%' . $request->filter[$i] . '%');
+               }
+           }
+           $data = $data->get();
+           $displayTable = 'all';
+        }else{
+            $data = DB::table('students')
+                ->select(DB::raw('
+                province,
+                municipality,
+                barangay,
+                count(case when sex = "male" then 1 else null end ) as total_male,
+                count(case when sex = "female" then 1 else null end ) as total_female
+                '));
+
+            for($i=0; $i < count($request->colname); $i++){
+                if($request->colname[$i] != ''){
+                    $data->where($request->colname[$i], 'like', '%'.$request->filter[$i].'%');
+                }
+            }
+           $data = $data->groupBy(['province', 'municipality','barangay'])
+                ->get();
+
+            $displayTable = 'total';
+        }
+
+//        dd($data);
+        return view('pages.generateExport')
+            ->with(compact('data', 'displayTable'))
+            ->with(['title' => 'Generate Export | ALS DATABASE', 'linkname' => 'generate']);
     }
 
 

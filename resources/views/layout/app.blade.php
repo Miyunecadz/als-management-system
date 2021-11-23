@@ -34,7 +34,7 @@
             let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             })
-        })
+        });
         $(() => {
             @if(session('success'))
                 toastr.options = { delay: 2000};

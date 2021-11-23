@@ -150,10 +150,10 @@
                 } );
 
 
-                $('#myTable thead tr')
-                    .clone(true)
-                    .addClass('filters')
-                    .appendTo('#myTable thead');
+                // $('#myTable thead tr')
+                //     .clone(true)
+                //     .addClass('filters')
+                //     .appendTo('#myTable thead');
 
                 datatable = $('#myTable').DataTable({
                     processing: true,
@@ -162,71 +162,71 @@
                     pagingType: 'simple',
                     dom: '<"d-flex flex-column-reverse flex-md-row justify-content-md-between"<"col-md-3 col-12"B><"col-md-4 col-12 mb-2"f>>t<"d-flex justify-content-between"ip>',
 
-                    orderCellsTop: true,
-                    fixedHeader: true,
-                    initComplete: function () {
-                        var api = this.api();
-                        // For each column
-                        api
-                            .columns()
-                            .eq(0)
-                            .each(function (colIdx) {
-                                // Set the header cell to contain the input element
-                                var cell = $('.filters th').eq(
-                                    $(api.column(colIdx).header()).index()
-                                );
-                                var title = $(cell).text();
-                                $(cell).html('<input type="text" placeholder="' + title + '" />');
-
-                                // On every keypress in this input
-                                $(
-                                    'input',
-                                    $('.filters th').eq($(api.column(colIdx).header()).index())
-                                )
-                                    .off('keyup change')
-                                    .on('keyup change', function (e) {
-                                        e.stopPropagation();
-
-                                        // Get the search value
-                                        $(this).attr('title', $(this).val());
-                                        var regexr = '({search})'; //$(this).parents('th').find('select').val();
-
-                                        var cursorPosition = this.selectionStart;
-                                        // Search the column for that value
-                                        if(this.value.length >= 3 || e.keyCode == 13) {
-                                            // Call the API search function
-                                            api
-                                                .column(colIdx)
-                                                .search(
-                                                    this.value != ''
-                                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
-                                                        : '',
-                                                    this.value != '',
-                                                    this.value == '',
-                                                )
-                                                .draw();
-                                        }
-                                        // Ensure we clear the search if they backspace far enough
-                                        if(this.value == "") {
-                                            api
-                                                .column(colIdx)
-                                                .search(
-                                                    this.value != ''
-                                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
-                                                        : '',
-                                                    this.value != '',
-                                                    this.value == '',
-                                                )
-                                                .draw();
-                                        }
-
-
-                                        $(this)
-                                            .focus()[0]
-                                            .setSelectionRange(cursorPosition, cursorPosition);
-                                    });
-                            });
-                    },
+                    // orderCellsTop: true,
+                    // fixedHeader: true,
+                    // initComplete: function () {
+                    //     var api = this.api();
+                    //     // For each column
+                    //     api
+                    //         .columns()
+                    //         .eq(0)
+                    //         .each(function (colIdx) {
+                    //             // Set the header cell to contain the input element
+                    //             var cell = $('.filters th').eq(
+                    //                 $(api.column(colIdx).header()).index()
+                    //             );
+                    //             var title = $(cell).text();
+                    //             $(cell).html('<input type="text" placeholder="' + title + '" />');
+                    //
+                    //             // On every keypress in this input
+                    //             $(
+                    //                 'input',
+                    //                 $('.filters th').eq($(api.column(colIdx).header()).index())
+                    //             )
+                    //                 .off('keyup change')
+                    //                 .on('keyup change', function (e) {
+                    //                     e.stopPropagation();
+                    //
+                    //                     // Get the search value
+                    //                     $(this).attr('title', $(this).val());
+                    //                     var regexr = '({search})'; //$(this).parents('th').find('select').val();
+                    //
+                    //                     var cursorPosition = this.selectionStart;
+                    //                     // Search the column for that value
+                    //                     if(this.value.length >= 3 || e.keyCode == 13) {
+                    //                         // Call the API search function
+                    //                         api
+                    //                             .column(colIdx)
+                    //                             .search(
+                    //                                 this.value != ''
+                    //                                     ? regexr.replace('{search}', '(((' + this.value + ')))')
+                    //                                     : '',
+                    //                                 this.value != '',
+                    //                                 this.value == '',
+                    //                             )
+                    //                             .draw();
+                    //                     }
+                    //                     // Ensure we clear the search if they backspace far enough
+                    //                     if(this.value == "") {
+                    //                         api
+                    //                             .column(colIdx)
+                    //                             .search(
+                    //                                 this.value != ''
+                    //                                     ? regexr.replace('{search}', '(((' + this.value + ')))')
+                    //                                     : '',
+                    //                                 this.value != '',
+                    //                                 this.value == '',
+                    //                             )
+                    //                             .draw();
+                    //                     }
+                    //
+                    //
+                    //                     $(this)
+                    //                         .focus()[0]
+                    //                         .setSelectionRange(cursorPosition, cursorPosition);
+                    //                 });
+                    //         });
+                    // },
                     buttons: [
                         {
                             extend: 'csv',

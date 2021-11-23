@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('als/list', [StudentController::class, 'index'])->name('listals');
     Route::get('als/list/all', [StudentController::class, 'displayAllColumn'])->name('listall');
+    Route::get('als/generate', [StudentController::class, 'generateExport'])->name('generateExport');
+    Route::get('als/generate/table', [StudentController::class, 'generateTable'])->name('generateTable');
     Route::resource('students', StudentController::class);
 
 

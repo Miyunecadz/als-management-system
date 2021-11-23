@@ -25,10 +25,10 @@
             <th>Religion</th>
             <th>Indigenous People (Specify)</th>
             <th>Mother Tongue</th>
-            <th>Father's Name/Guardian Last Name</th>
-            <th>Father's Name/Guardian First Name</th>
-            <th>Father's Name/Guardian Middle Name</th>
-            <th>Father's Name/Guardian Occupation</th>
+            <th>Father's /Guardian Last Name</th>
+            <th>Father's /Guardian First Name</th>
+            <th>Father's /Guardian Middle Name</th>
+            <th>Father's /Guardian Occupation</th>
             <th>Mother's Maiden Name Last Name</th>
             <th>Mother's Maiden Name First Name</th>
             <th>Mother's Maiden Name Middle Name</th>
