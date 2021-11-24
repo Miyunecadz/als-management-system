@@ -21,6 +21,11 @@
                 </div>
             </div>
             <div class="form-floating ">
+                <input type="text" name="designation" class="form-control mb-3" id="designation" placeholder="Martin"
+                       value="{{ old('designation')? old('designation') : $user->designation}}">
+                <label for="designation">Designation</label>
+            </div>
+            <div class="form-floating ">
                 <input type="text" name="username" class="form-control mb-3 {{ $errors->has('username')? 'is-invalid': '' }}"
                        id="username" placeholder="Martin" value="{{ old('username')? old('username') : $user->username }}"
                        aria-describedby="username-Validation">

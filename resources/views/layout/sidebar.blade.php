@@ -40,6 +40,20 @@
                         Teachers
                     </span>
                 </a>
+            @else
+            <a href="{{ route('students.create') }}" class="text-decoration-none  sidebar-width
+                                nav-height  d-flex align-items-center
+                                px-3 text-white
+                                {{ $routename === 'create student' ? 'selected-nav' : '' }}">
+                <span>
+                    <i class="bi bi-person-plus-fill"></i>
+                    Add Student
+                </span>
+            </a>
+            @endif
+
+            @if (auth()->check())
+
                 <a href="{{ (url('als/list')) }}" class="text-decoration-none  sidebar-width
                                 nav-height  d-flex align-items-center
                                 px-3 text-white
@@ -58,25 +72,6 @@
                         Generate Report
                     </span>
                 </a>
-            @else
-            <a href="{{ route('students.create') }}" class="text-decoration-none  sidebar-width
-                                nav-height  d-flex align-items-center
-                                px-3 text-white
-                                {{ $routename === 'create student' ? 'selected-nav' : '' }}">
-                <span>
-                    <i class="bi bi-person-plus-fill"></i>
-                    Add Student
-                </span>
-            </a>
-            <a href="{{ url('als/list') }}" class="text-decoration-none  sidebar-width
-                                nav-height  d-flex align-items-center
-                                px-3 text-white
-                                {{ $routename === 'list student' ? 'selected-nav' : '' }}">
-                <span>
-                    <i class="bi bi-person-lines-fill"></i>
-                    Student List
-                </span>
-            </a>
             @endif
         </div>
 

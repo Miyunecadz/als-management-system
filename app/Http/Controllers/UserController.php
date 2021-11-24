@@ -63,7 +63,7 @@ class UserController extends Controller
             return redirect(route('login-page'))->withErrors($validator->errors())->withInput();
         }
 
-        if(Auth::attempt(['username' => $request->username, 'password' => $request->password]))
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password, 'status' => true]))
         {
             $request->session()->regenerate();
             return redirect()->intended(route('dashboard'));
@@ -71,7 +71,7 @@ class UserController extends Controller
 
 
         return redirect(route('login-page'))->withErrors([
-            'message' => "Invalid username or password!"
+            'message' => "Account is not activated, please contact admin!"
         ])->withInput();
     }
 
@@ -183,7 +183,7 @@ class UserController extends Controller
 
         if($request->ajax()){
 
-            $data = User::query()->where('role','<>', 'teacher');
+            $data = User::query()->where('role','=', 'teacher');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){

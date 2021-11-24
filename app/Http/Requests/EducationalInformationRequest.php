@@ -28,7 +28,6 @@ class EducationalInformationRequest extends FormRequest
     {
         return [
             'lastgrade' => 'required',
-            'dropout' => 'required',
             'dropoutother' => 'required_if:dropout,Other',
             'attendedals' => 'required',
             'programname' => 'required_if:attendedals,Yes',

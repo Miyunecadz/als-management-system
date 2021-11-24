@@ -151,6 +151,10 @@ class StudentController extends Controller
                    $data->where($request->colname[$i], 'like', '%' . $request->filter[$i] . '%');
                }
            }
+           if(!auth()->user()->isAdmin())
+           {
+               $data->where('user_id', auth()->user()->id);
+           }
            $data = $data->get();
            $displayTable = 'all';
         }else{
@@ -162,7 +166,10 @@ class StudentController extends Controller
                 count(case when sex = "male" then 1 else null end ) as total_male,
                 count(case when sex = "female" then 1 else null end ) as total_female
                 '));
-
+            if(!auth()->user()->isAdmin())
+            {
+                $data->where('user_id', auth()->user()->id);
+            }
             for($i=0; $i < count($request->colname); $i++){
                 if($request->colname[$i] != ''){
                     $data->where($request->colname[$i], 'like', '%'.$request->filter[$i].'%');
@@ -185,7 +192,10 @@ class StudentController extends Controller
     {
 
         if($request->ajax()){
-            $data = Student::query()->where('user_id', $request->user()->id);
+            $data = Student::query();
+            if(!auth()->user()->isAdmin()){
+                $data->where('user_id', $request->user()->id);
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){

@@ -157,9 +157,10 @@
                 ],
                 ajax: $.fn.dataTable.pipeline( {
                     url : "{{ route('student') }}",
-                    method: 'GET',
+                    method: 'POST',
                     headers: {'X-Requested-With': 'XMLHttpRequest'},
                     pages: 5,
+                    data: {"_token": "{{ csrf_token() }}"},
                 }),
                 columns: [
                     {data: 'firstname', name: 'firstname'},
